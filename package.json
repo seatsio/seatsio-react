@@ -1,10 +1,10 @@
 {
   "name": "seatsio-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "build/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/seatsio/seatsio-js"
+    "url": "https://github.com/seatsio/seatsio-react"
   },
   "scripts": {
     "start": "webpack --watch",

@@ -1,6 +1,6 @@
 # seatsio-react, the official Seats.io React wrapper
 
-React wrapper for rendering [Seats.io](https://www.seats.io) regular seating charts and the event manager. Brought to you by the Seats.io team.
+React wrapper for rendering [Seats.io](https://www.seats.io) seating charts. Brought to you by the Seats.io team.
 
 # Installation
 

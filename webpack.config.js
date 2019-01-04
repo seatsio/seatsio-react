@@ -1,6 +1,6 @@
 var path = require('path');
 module.exports = {
-    entry: './src/main/SeatsioSeatingChart.js',
+    entry: './src/main/index.js',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'index.js',

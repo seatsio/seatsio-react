@@ -1,6 +1,6 @@
 # seatsio-react
 
-React wrapper for rendering [Seats.io](https://www.seats.io) seating charts. Brought to you by the Seats.io team.
+React wrapper for rendering [Seats.io](https://www.seats.io) regular seating charts and the event manager. Brought to you by the Seats.io team.
 
 # Installation
 
@@ -9,6 +9,8 @@ npm install --save @seatsio/seatsio-react
 ```
 
 # Usage
+
+## Regular charts
 
 Minimal:
 
@@ -53,3 +55,15 @@ Other parameters are supported as well. For a full list, check https://docs.seat
     priceFormatter={price => '$' + price}
 >
 ```
+
+## Event manager
+
+```jsx
+<SeatsioEventManager
+    secretKey="<yourSecretKey>"
+    event="<yourEventKey>"
+    mode="<manageObjectStatus or another mode>"
+>
+```
+
+Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/configuring-event-manager

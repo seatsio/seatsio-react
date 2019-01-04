@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import SeatsioSeatingChart from "../main/SeatsioSeatingChart";
+import AbstractChart from "../main/AbstractChart";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -21,7 +22,7 @@ describe("SeatsioSeatingChart", () => {
         }
     };
 
-    SeatsioSeatingChart.prototype.loadSeatsio = () => {
+    AbstractChart.prototype.loadSeatsio = () => {
         return Promise.resolve(seatsioMock);
     };
 

@@ -1,0 +1,54 @@
+import React from "react";
+import Enzyme, {mount} from "enzyme";
+import Adapter from 'enzyme-adapter-react-16';
+import SeatsioEventManager from "../main/SeatsioEventManager";
+import AbstractChart from "../main/AbstractChart";
+
+Enzyme.configure({adapter: new Adapter()});
+
+describe("SeatsioEventManager", () => {
+
+    let seatsioMock = {
+
+        EventManager: class {
+
+            constructor(props) {
+                this.props = props;
+            }
+
+            render() {
+                return this;
+            }
+        }
+    };
+
+    AbstractChart.prototype.loadSeatsio = () => {
+        return Promise.resolve(seatsioMock);
+    };
+
+    it('renders the event manager', () => {
+        let chart = mount((
+            <SeatsioEventManager/>
+        ));
+
+        expect(chart.find('div#chart').length).toEqual(1);
+    });
+
+    it('passes parameters onto the event manager', () => {
+        return new Promise(resolve => {
+            mount((
+                <SeatsioEventManager
+                    id="someID"
+                    className="someClassName"
+                    publicKey="aPublicKey"
+                    onChartCreated={chart => {
+                        expect(chart.props).toEqual({
+                            divId: 'someID',
+                            publicKey: 'aPublicKey'
+                        });
+                        resolve();
+                    }}/>
+            ));
+        });
+    });
+});

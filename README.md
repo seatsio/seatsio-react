@@ -4,7 +4,9 @@ React wrapper around the seats.io seating charts.
 
 # Installation
 
+```
 npm install --save @seatsio/seatsio-react
+```
 
 # Usage
 

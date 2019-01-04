@@ -51,6 +51,22 @@ Custom chart div class:
 >
 ```
 
+If you store the chart object that's passed to `onChartCreated`, you can access the properties defined on the `seatsio.SeatingChart`:
+
+```jsx
+let chart = null;
+
+<SeatsioSeatingChart
+    publicKey="<yourPublicKey>"
+    event="<yourEventKey>"
+    onChartCreated={createdChart => { chart = createdChart }}
+>
+
+...
+
+console.log(chart.selectedObjects);
+```
+
 `onChartRendered` is fired when the chart is rendered successfully:
 
 ```jsx

@@ -51,7 +51,7 @@ Custom chart div class:
 >
 ```
 
-If you store the chart object that's passed to `onChartCreated`, you can access the properties defined on the `seatsio.SeatingChart`:
+If you store the chart object that's passed to `onChartCreated`, you can access the properties defined on the  wrapped `seatsio.SeatingChart`:
 
 ```jsx
 let chart = null;

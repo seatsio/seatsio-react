@@ -1,6 +1,2 @@
-import SeatsioSeatingChart from "./SeatsioSeatingChart";
-import SeatsioEventManager from "./SeatsioEventManager";
-
-module.exports = {
-    SeatsioSeatingChart, SeatsioEventManager
-};
+export {default as SeatsioSeatingChart} from './SeatsioSeatingChart';
+export {default as SeatsioEventManager} from './SeatsioEventManager';

@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
-import SeatsioEventManager from "../main/SeatsioEventManager";
+import {SeatsioEventManager} from "../main/index";
 import AbstractChart from "../main/AbstractChart";
 
 Enzyme.configure({adapter: new Adapter()});

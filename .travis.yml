@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-  - "node"
+- "node"
+before_deploy: npm run build
+deploy:
+- provider: npm
+  email: matti@seats.io
+  api_key:
+    secure: "rnWtKFecL9+5t74TA472rJ+rxh8Se3UgKSO9JrHBGQ5gvrpGlLXqwUQb9qR041oXXFfuwyZb2TA2PLinbsMqXAZmj9DVQE9NeJ0mvgQgNfkgkM5HQl4beiSqjm23pNMDOgsaS3VnQgbd8sqMclEzCYZyqwMLB1zXSgFzO/63fkFylpX6CRXppyxtpDGCLa7JiqbQs3d3uWWBC64tDr1ahfjKfi/JD8siy0w5tN7XRr2aC4cPXMWsv7wkwEk3aOHQO1bd9x4W7Rwnodr5olOMoEAHNjB5GxvwvM3PTZ21hRcoxrNN4NXnReSBqtuhjxK1huSgGYSAuxKPkjo/u6r5zvfs4u2E/zpQHk+Fjo3AlcCVkCeV034U4H0cxC4b7MphGCX6DZEOgXqfuEdg03yq7ruifaTH6iyiiqku30XnfcgBg3+AGboSQMwjy/nm2D1sTRGURD187NYGCeeS7NZ6jOTXZ9JBgFRM5FpYot93TWcfoWIR/ALxk2tZYZ0Pz7eZIb+AcJsFtlIXVfQgg5HnLy7lpy9zX0yE1umyrsSQViqVSYJbPeCv9GNtMHh3SifFpqX1HgEIkXqpELioWKQhCEbIFDUaWySsMlFi4rc0kdmmhAJWwa+PnTwvJZJMLfkwB5gscDzXABF5CT5MYNjewc6Hq8E7ISIchSPLaiLMvC0="
+  on:
+    tags: true

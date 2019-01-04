@@ -7,8 +7,8 @@
     "url": "https://github.com/seatsio/seatsio-react"
   },
   "scripts": {
-    "start": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "test": "jest"
   },
   "author": {
     "name": "mroloux"

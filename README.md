@@ -19,6 +19,26 @@ Minimal:
 >
 ```
 
+Custom chart div ID:
+
+```jsx
+<SeatsioSeatingChart
+    publicKey="<yourPublicKey>"
+    event="<yourEventKey>"
+    id="<theChartDivID>"
+>
+```
+
+Custom chart div class:
+
+```jsx
+<SeatsioSeatingChart
+    publicKey="<yourPublicKey>"
+    event="<yourEventKey>"
+    className="<theChartDivClassName>"
+>
+```
+
 `onChartCreated` is fired when the chart has started loading, but hasn't rendered yet:
 
 ```jsx

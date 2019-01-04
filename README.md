@@ -1,4 +1,4 @@
-# seatsio-react
+# seatsio-react, the official Seats.io React wrapper
 
 React wrapper for rendering [Seats.io](https://www.seats.io) regular seating charts and the event manager. Brought to you by the Seats.io team.
 

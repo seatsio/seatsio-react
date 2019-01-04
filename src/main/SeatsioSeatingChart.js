@@ -5,27 +5,29 @@ import React from 'react';
 export default class SeatsioSeatingChart extends React.Component {
 
     async componentDidMount() {
-        let seatsio = await this.loadSeatsio();
+        let seatsio = await this.getSeatsio();
         let {id, className, onChartCreated, ...config} = this.props;
         config.divId = this.props.id;
         let chart = new seatsio.SeatingChart(config).render();
+        this.chart = chart;
         if (this.props.onChartCreated) this.props.onChartCreated(chart);
-        this.setState({chart});
     }
 
     componentWillUnmount() {
-        if (this.state.chart.state !== 'DESTROYED') {
-            this.state.chart.destroy();
+        if (this.chart.state !== 'DESTROYED') {
+            this.chart.destroy();
         }
+    }
+
+    getSeatsio() {
+        if (typeof seatsio !== 'undefined') {
+            return Promise.resolve(seatsio);
+        }
+        return this.loadSeatsio();
     }
 
     loadSeatsio() {
         return new Promise((resolve, reject) => {
-            if (typeof seatsio !== 'undefined') {
-                resolve(seatsio);
-                return;
-            }
-
             let script = document.createElement('script');
             script.onload = () => resolve(seatsio);
             script.onerror = () => reject(`Could not load ${script.src}`);

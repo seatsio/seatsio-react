@@ -49,15 +49,17 @@ describe("SeatsioSeatingChart", () => {
         expect(chart.find('div.charty').length).toEqual(1);
     });
 
-    it('passes a divId parameter onto the chart', () => {
+    it('passes parameters onto the chart', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioSeatingChart
                     id="someID"
                     className="someClassName"
+                    publicKey="aPublicKey"
                     onChartCreated={chart => {
                         expect(chart.props).toEqual({
-                            divId: 'someID'
+                            divId: 'someID',
+                            publicKey: 'aPublicKey'
                         });
                         resolve();
                     }}/>

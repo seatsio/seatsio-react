@@ -1,6 +1,6 @@
 # seatsio-react
 
-React wrapper for rendering [Seats.io](https://www.seats.io) seating charts.
+React wrapper for rendering [Seats.io](https://www.seats.io) seating charts. Brought to you by the Seats.io team.
 
 # Installation
 

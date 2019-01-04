@@ -1,6 +1,6 @@
 {
   "name": "@seatsio/seatsio-react",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "main": "build/index.js",
   "repository": {
     "type": "git",
@@ -13,16 +13,15 @@
   "author": {
     "name": "mroloux"
   },
+  "license": "MIT",
   "files": [
     "build/"
   ],
-  "dependencies": {
-    "webpack": "^4.12.0"
-  },
   "peerDependencies": {
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "webpack": "^4.12.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",

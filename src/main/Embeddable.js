@@ -6,11 +6,11 @@ export default class Embeddable extends React.Component {
 
     async componentDidMount() {
         let seatsio = await this.getSeatsio();
-        let {id, className, onChartCreated, ...config} = this.props;
+        let {id, className, onRenderStarted, ...config} = this.props;
         config.divId = this.props.id;
         let chart = this.createChart(seatsio, config).render();
         this.chart = chart;
-        if (this.props.onChartCreated) this.props.onChartCreated(chart);
+        if (this.props.onRenderStarted) this.props.onRenderStarted(chart);
     }
 
     componentWillUnmount() {

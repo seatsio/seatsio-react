@@ -57,7 +57,7 @@ describe("SeatsioSeatingChart", () => {
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
-                    onChartCreated={chart => {
+                    onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             publicKey: 'aPublicKey'
@@ -75,7 +75,7 @@ describe("SeatsioSeatingChart", () => {
         return new Promise(resolve => {
             let chart = mount((
                 <SeatsioSeatingChart
-                    onChartCreated={() => {
+                    onRenderStarted={() => {
                         chart.unmount();
 
                         expect(mockedDestroy.mock.calls.length).toEqual(1);
@@ -93,7 +93,7 @@ describe("SeatsioSeatingChart", () => {
         return new Promise(resolve => {
             let chartComponent = mount((
                 <SeatsioSeatingChart
-                    onChartCreated={chart => {
+                    onRenderStarted={chart => {
                         chart.state = 'DESTROYED';
                         chartComponent.unmount();
 

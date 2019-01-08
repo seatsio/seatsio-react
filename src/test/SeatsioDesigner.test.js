@@ -41,7 +41,7 @@ describe("SeatsioDesigner", () => {
                     id="someID"
                     className="someClassName"
                     designerKey="aDesignerKey"
-                    onChartCreated={chart => {
+                    onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             designerKey: 'aDesignerKey'

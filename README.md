@@ -41,17 +41,17 @@ Custom chart div class:
 >
 ```
 
-`onChartCreated` is fired when the chart has started loading, but hasn't rendered yet:
+`onRenderStarted` is fired when the chart has started loading, but hasn't rendered yet:
 
 ```jsx
 <SeatsioSeatingChart
     publicKey="<yourPublicKey>"
     event="<yourEventKey>"
-    onChartCreated={chart => { ... }}
+    onRenderStarted={chart => { ... }}
 >
 ```
 
-If you store the chart object that's passed to `onChartCreated`, you can access the properties defined on the  wrapped `seatsio.SeatingChart`:
+If you store the chart object that's passed to `onRenderStarted`, you can access the properties defined on the  wrapped `seatsio.SeatingChart`:
 
 ```jsx
 let chart = null;
@@ -59,7 +59,7 @@ let chart = null;
 <SeatsioSeatingChart
     publicKey="<yourPublicKey>"
     event="<yourEventKey>"
-    onChartCreated={createdChart => { chart = createdChart }}
+    onRenderStarted={createdChart => { chart = createdChart }}
 >
 
 ...

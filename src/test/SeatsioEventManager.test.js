@@ -41,7 +41,7 @@ describe("SeatsioEventManager", () => {
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
-                    onChartCreated={chart => {
+                    onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             publicKey: 'aPublicKey'

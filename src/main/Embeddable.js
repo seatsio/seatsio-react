@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export default class AbstractChart extends React.Component {
+export default class Embeddable extends React.Component {
 
     async componentDidMount() {
         let seatsio = await this.getSeatsio();
@@ -43,6 +43,6 @@ export default class AbstractChart extends React.Component {
     }
 }
 
-AbstractChart.defaultProps = {
+Embeddable.defaultProps = {
     id: 'chart'
 };

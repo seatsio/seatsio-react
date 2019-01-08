@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import {SeatsioDesigner} from "../main/index";
-import AbstractChart from "../main/AbstractChart";
+import Embeddable from "../main/Embeddable";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -22,7 +22,7 @@ describe("SeatsioDesigner", () => {
         }
     };
 
-    AbstractChart.prototype.loadSeatsio = () => {
+    Embeddable.prototype.loadSeatsio = () => {
         return Promise.resolve(seatsioMock);
     };
 

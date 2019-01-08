@@ -1,6 +1,6 @@
-import AbstractChart from "./AbstractChart";
+import Embeddable from "./Embeddable";
 
-export default class SeatsioEventManager extends AbstractChart {
+export default class SeatsioEventManager extends Embeddable {
 
     createChart(seatsio, config) {
         return new seatsio.EventManager(config);

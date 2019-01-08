@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import {SeatsioSeatingChart} from "../main/index";
-import AbstractChart from "../main/AbstractChart";
+import Embeddable from "../main/Embeddable";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -22,7 +22,7 @@ describe("SeatsioSeatingChart", () => {
         }
     };
 
-    AbstractChart.prototype.loadSeatsio = () => {
+    Embeddable.prototype.loadSeatsio = () => {
         return Promise.resolve(seatsioMock);
     };
 
@@ -57,7 +57,7 @@ describe("SeatsioSeatingChart", () => {
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
-                    onChartCreated={chart => {
+                    onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             publicKey: 'aPublicKey'
@@ -75,7 +75,7 @@ describe("SeatsioSeatingChart", () => {
         return new Promise(resolve => {
             let chart = mount((
                 <SeatsioSeatingChart
-                    onChartCreated={() => {
+                    onRenderStarted={() => {
                         chart.unmount();
 
                         expect(mockedDestroy.mock.calls.length).toEqual(1);
@@ -93,7 +93,7 @@ describe("SeatsioSeatingChart", () => {
         return new Promise(resolve => {
             let chartComponent = mount((
                 <SeatsioSeatingChart
-                    onChartCreated={chart => {
+                    onRenderStarted={chart => {
                         chart.state = 'DESTROYED';
                         chartComponent.unmount();
 

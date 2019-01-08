@@ -1,16 +1,16 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
-import {SeatsioEventManager} from "../main/index";
+import {SeatsioDesigner} from "../main/index";
 import Embeddable from "../main/Embeddable";
 
 Enzyme.configure({adapter: new Adapter()});
 
-describe("SeatsioEventManager", () => {
+describe("SeatsioDesigner", () => {
 
     let seatsioMock = {
 
-        EventManager: class {
+        SeatingChartDesigner: class {
 
             constructor(props) {
                 this.props = props;
@@ -26,29 +26,30 @@ describe("SeatsioEventManager", () => {
         return Promise.resolve(seatsioMock);
     };
 
-    it('renders the event manager', () => {
+    it('renders the designer', () => {
         let chart = mount((
-            <SeatsioEventManager/>
+            <SeatsioDesigner/>
         ));
 
         expect(chart.find('div#chart').length).toEqual(1);
     });
 
-    it('passes parameters onto the event manager', () => {
+    it('passes parameters onto the designer', () => {
         return new Promise(resolve => {
             mount((
-                <SeatsioEventManager
+                <SeatsioDesigner
                     id="someID"
                     className="someClassName"
-                    publicKey="aPublicKey"
+                    designerKey="aDesignerKey"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
-                            publicKey: 'aPublicKey'
+                            designerKey: 'aDesignerKey'
                         });
                         resolve();
                     }}/>
             ));
         });
     });
+
 });

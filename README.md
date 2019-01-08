@@ -103,3 +103,27 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 ```
 
 Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/configuring-event-manager
+
+
+
+## Seating Chart Designer
+
+To embed the seating chart designer for the purpose of creating a new chart, do this:
+
+```jsx
+<SeatsioDesigner
+    designerKey="<yourDesignerKey>"    
+>
+```
+
+To be able to edit a chart from an embedded designer, you need to specify the chart to load:
+ 
+```jsx
+<SeatsioDesigner
+    designerKey="<yourDesignerKey>"
+    chartKey="<yourChartKey>"    
+>
+```
+    
+
+Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/embedded-designer-configuration

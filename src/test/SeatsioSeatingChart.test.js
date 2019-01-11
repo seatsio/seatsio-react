@@ -34,6 +34,21 @@ describe("SeatsioSeatingChart", () => {
         expect(chart.find('div#chart').length).toEqual(1);
     });
 
+    it('renders the chart with default properties', () => {
+        return new Promise(resolve => {
+            mount((
+                <SeatsioSeatingChart
+                    onRenderStarted={chart => {
+                        expect(chart.props).toEqual({
+                            divId: "chart",
+                            seatsioCdnUrl:"https://cdn.seatsio.net/chart.js"
+                        });
+                        resolve();
+                    }}/>
+            ));
+        });
+    });
+
     it('renders the chart in a div with the specified ID', () => {
         let chart = mount((
             <SeatsioSeatingChart id="mySuperDuperChart"/>
@@ -57,10 +72,12 @@ describe("SeatsioSeatingChart", () => {
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
+                    seatsioCdnUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
-                            publicKey: 'aPublicKey'
+                            publicKey: 'aPublicKey',
+                            seatsioCdnUrl:"https://www.google.com"
                         });
                         resolve();
                     }}/>

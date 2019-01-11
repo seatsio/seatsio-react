@@ -8,6 +8,7 @@ export default class Embeddable extends React.Component {
         let seatsio = await this.getSeatsio();
         let {id, className, onRenderStarted, ...config} = this.props;
         config.divId = this.props.id;
+        config.seatsioCdnUrl = this.props.seatsioCdnUrl;
         let chart = this.createChart(seatsio, config).render();
         this.chart = chart;
         if (this.props.onRenderStarted) this.props.onRenderStarted(chart);
@@ -31,7 +32,7 @@ export default class Embeddable extends React.Component {
             let script = document.createElement('script');
             script.onload = () => resolve(seatsio);
             script.onerror = () => reject(`Could not load ${script.src}`);
-            script.src = 'https://cdn.seatsio.net/chart.js';
+            script.src = this.props.seatsioCdnUrl;
             document.head.appendChild(script);
         });
     }
@@ -44,5 +45,6 @@ export default class Embeddable extends React.Component {
 }
 
 Embeddable.defaultProps = {
-    id: 'chart'
+    id: 'chart',
+    seatsioCdnUrl: 'https://cdn.seatsio.net/chart.js'
 };

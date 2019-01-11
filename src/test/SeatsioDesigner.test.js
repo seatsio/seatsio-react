@@ -27,28 +27,30 @@ describe("SeatsioDesigner", () => {
     };
 
     it('renders the designer', () => {
-        let chart = mount((
+        let chart = mount(
             <SeatsioDesigner/>
-        ));
+        );
 
         expect(chart.find('div#chart').length).toEqual(1);
     });
 
     it('passes parameters onto the designer', () => {
         return new Promise(resolve => {
-            mount((
+            mount(
                 <SeatsioDesigner
                     id="someID"
                     className="someClassName"
                     designerKey="aDesignerKey"
+                    chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
-                            designerKey: 'aDesignerKey'
+                            designerKey: 'aDesignerKey',
+                            chartJsUrl: 'https://www.google.com'
                         });
                         resolve();
                     }}/>
-            ));
+            );
         });
     });
 

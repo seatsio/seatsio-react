@@ -41,12 +41,12 @@ describe("SeatsioEventManager", () => {
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
-                    seatsioCdnUrl="https://www.google.com"
+                    chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             publicKey: 'aPublicKey',
-                            seatsioCdnUrl:"https://www.google.com"
+                            chartJsUrl:"https://www.google.com"
                         });
                         resolve();
                     }}/>

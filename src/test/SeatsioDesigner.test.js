@@ -41,26 +41,17 @@ describe("SeatsioDesigner", () => {
                     id="someID"
                     className="someClassName"
                     designerKey="aDesignerKey"
-                    seatsioCdnUrl="https://www.google.com"
+                    chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             designerKey: 'aDesignerKey',
-                            seatsioCdnUrl: 'https://www.google.com'
+                            chartJsUrl: 'https://www.google.com'
                         });
                         resolve();
                     }}/>
             );
         });
-    });
-
-    it('is possible to change the CDN url', () => {
-        let chart = mount(
-            <SeatsioDesigner
-                cdnUrl="https://some.otherurl.org"
-            />
-        );
-
     });
 
 });

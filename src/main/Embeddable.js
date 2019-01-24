@@ -5,13 +5,20 @@ import React from 'react';
 export default class Embeddable extends React.Component {
 
     async componentDidMount() {
-        let seatsio = await this.getSeatsio();
-        let {id, className, onRenderStarted, ...config} = this.props;
+        const seatsio = await this.getSeatsio();
+        const config = this.extractConfigFromProps();
         config.divId = this.props.id;
-        config.chartJsUrl = this.props.chartJsUrl;
-        let chart = this.createChart(seatsio, config).render();
+        const chart = this.createChart(seatsio, config).render();
         this.chart = chart;
-        if (this.props.onRenderStarted) this.props.onRenderStarted(chart);
+        if (this.props.onRenderStarted) {
+            this.props.onRenderStarted(chart);
+        }
+    }
+
+    extractConfigFromProps() {
+        // noinspection JSUnusedLocalSymbols
+        let {id, className, onRenderStarted, chartJsUrl, ...config} = this.props;
+        return config;
     }
 
     componentWillUnmount() {

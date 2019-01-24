@@ -40,8 +40,7 @@ describe("SeatsioSeatingChart", () => {
                 <SeatsioSeatingChart
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
-                            divId: "chart",
-                            chartJsUrl:"https://cdn.seatsio.net/chart.js"
+                            divId: "chart"
                         });
                         resolve();
                     }}/>
@@ -72,12 +71,29 @@ describe("SeatsioSeatingChart", () => {
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
+                    onRenderStarted={chart => {
+                        expect(chart.props).toEqual({
+                            divId: 'someID',
+                            publicKey: 'aPublicKey',
+                        });
+                        resolve();
+                    }}/>
+            ));
+        });
+    });
+
+    it('does not pass chartJsUrl onto the chart', () => {
+        return new Promise(resolve => {
+            mount((
+                <SeatsioSeatingChart
+                    id="someID"
+                    className="someClassName"
+                    publicKey="aPublicKey"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             publicKey: 'aPublicKey',
-                            chartJsUrl:"https://www.google.com"
                         });
                         resolve();
                     }}/>

@@ -41,12 +41,30 @@ describe("SeatsioDesigner", () => {
                     id="someID"
                     className="someClassName"
                     designerKey="aDesignerKey"
+                    onRenderStarted={chart => {
+                        expect(chart.props).toEqual({
+                            divId: 'someID',
+                            designerKey: 'aDesignerKey',
+                        });
+                        resolve();
+                    }}/>
+            );
+        });
+    });
+
+
+    it('does not pass chartJsUrl onto the designer', () => {
+        return new Promise(resolve => {
+            mount(
+                <SeatsioDesigner
+                    id="someID"
+                    className="someClassName"
+                    designerKey="aDesignerKey"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             designerKey: 'aDesignerKey',
-                            chartJsUrl: 'https://www.google.com'
                         });
                         resolve();
                     }}/>

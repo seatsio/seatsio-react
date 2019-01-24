@@ -41,12 +41,29 @@ describe("SeatsioEventManager", () => {
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
+                    onRenderStarted={chart => {
+                        expect(chart.props).toEqual({
+                            divId: 'someID',
+                            publicKey: 'aPublicKey',
+                        });
+                        resolve();
+                    }}/>
+            ));
+        });
+    });
+
+    it('does not pass chartJsUrl onto the event manager', () => {
+        return new Promise(resolve => {
+            mount((
+                <SeatsioEventManager
+                    id="someID"
+                    className="someClassName"
+                    publicKey="aPublicKey"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             publicKey: 'aPublicKey',
-                            chartJsUrl:"https://www.google.com"
                         });
                         resolve();
                     }}/>

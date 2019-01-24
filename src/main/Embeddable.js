@@ -6,9 +6,9 @@ export default class Embeddable extends React.Component {
 
     async componentDidMount() {
         let seatsio = await this.getSeatsio();
-        let {id, className, onRenderStarted, ...config} = this.props;
+        let {id, className, onRenderStarted, chartJsUrl, ...config} = this.props;
         config.divId = this.props.id;
-        config.chartJsUrl = this.props.chartJsUrl;
+        this.chartJsUrl = chartJsUrl;
         let chart = this.createChart(seatsio, config).render();
         this.chart = chart;
         if (this.props.onRenderStarted) this.props.onRenderStarted(chart);
@@ -32,7 +32,7 @@ export default class Embeddable extends React.Component {
             let script = document.createElement('script');
             script.onload = () => resolve(seatsio);
             script.onerror = () => reject(`Could not load ${script.src}`);
-            script.src = this.props.chartJsUrl;
+            script.src = this.chartJsUrl;
             document.head.appendChild(script);
         });
     }

@@ -5,13 +5,20 @@ import React from 'react';
 export default class Embeddable extends React.Component {
 
     async componentDidMount() {
-        let seatsio = await this.getSeatsio();
-        let {id, className, onRenderStarted, chartJsUrl, ...config} = this.props;
+        const seatsio = await this.getSeatsio();
+        const config = this.extractConfigFromProps();
         config.divId = this.props.id;
-        this.chartJsUrl = chartJsUrl;
-        let chart = this.createChart(seatsio, config).render();
+        const chart = this.createChart(seatsio, config).render();
         this.chart = chart;
-        if (this.props.onRenderStarted) this.props.onRenderStarted(chart);
+        if (this.props.onRenderStarted) {
+            this.props.onRenderStarted(chart);
+        }
+    }
+
+    extractConfigFromProps() {
+        // noinspection JSUnusedLocalSymbols
+        let {id, className, onRenderStarted, chartJsUrl, ...config} = this.props;
+        return config;
     }
 
     componentWillUnmount() {
@@ -32,7 +39,7 @@ export default class Embeddable extends React.Component {
             let script = document.createElement('script');
             script.onload = () => resolve(seatsio);
             script.onerror = () => reject(`Could not load ${script.src}`);
-            script.src = this.chartJsUrl;
+            script.src = this.props.chartJsUrl;
             document.head.appendChild(script);
         });
     }

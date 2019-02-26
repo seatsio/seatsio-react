@@ -97,6 +97,8 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 ## Event manager
 
 ```jsx
+import { SeatsioEventManager } from '@seatsio/seatsio-react'
+
 <SeatsioEventManager
     secretKey="<yourSecretKey>"
     event="<yourEventKey>"
@@ -113,7 +115,7 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 To embed the seating chart designer for the purpose of creating a new chart, do this:
 
 ```jsx
-import { SeatsioEventManager } from '@seatsio/seatsio-react'
+import { SeatsioDesigner } from '@seatsio/seatsio-react'
 
 <SeatsioDesigner
     designerKey="<yourDesignerKey>"    

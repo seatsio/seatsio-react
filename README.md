@@ -15,6 +15,8 @@ npm install --save @seatsio/seatsio-react
 Minimal:
 
 ```jsx
+import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
+
 <SeatsioSeatingChart
     publicKey="<yourPublicKey>"
     event="<yourEventKey>"
@@ -111,6 +113,8 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 To embed the seating chart designer for the purpose of creating a new chart, do this:
 
 ```jsx
+import { SeatsioEventManager } from '@seatsio/seatsio-react'
+
 <SeatsioDesigner
     designerKey="<yourDesignerKey>"    
 />

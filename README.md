@@ -102,7 +102,7 @@ import { SeatsioEventManager } from '@seatsio/seatsio-react'
 <SeatsioEventManager
     secretKey="<yourSecretKey>"
     event="<yourEventKey>"
-    mode="<manageObjectStatus or another mode>"
+    mode="<manageObjectStatuses or another mode>"
 />
 ```
 

@@ -1,27 +1,12 @@
 {
-  "name": "@seatsio/seatsio-react",
-  "version": "6.0.0",
-  "main": "build/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/seatsio/seatsio-react"
-  },
-  "scripts": {
-    "build": "webpack",
-    "test": "jest"
-  },
+  "$schema": "http://json.schemastore.org/package",
   "author": {
     "name": "mroloux"
   },
-  "license": "MIT",
-  "files": [
-    "build/"
-  ],
-  "peerDependencies": {
-    "react": "^16.0.0"
+  "dependencies": {
+    "regenerator-runtime": "^0.13.2"
   },
   "devDependencies": {
-    "webpack": "^4.12.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -33,9 +18,25 @@
     "jest": "^23.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "webpack": "^4.12.0",
     "webpack-cli": "^3.0.4"
   },
-  "dependencies": {
-    "regenerator-runtime": "^0.13.2"
-  }
+  "files": [
+    "build/"
+  ],
+  "license": "MIT",
+  "main": "build/index.js",
+  "name": "@seatsio/seatsio-react",
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seatsio/seatsio-react"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "jest"
+  },
+  "version": "6.0.0"
 }

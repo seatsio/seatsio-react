@@ -1,7 +1,7 @@
 import React from "react";
-import Enzyme, {mount} from "enzyme";
+import Enzyme, { mount } from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
-import {SeatsioSeatingChart} from "../main/index";
+import { SeatsioSeatingChart } from "../main/index";
 import Embeddable from "../main/Embeddable";
 
 Enzyme.configure({adapter: new Adapter()});
@@ -135,6 +135,13 @@ describe("SeatsioSeatingChart", () => {
                     }}
                 />
             ));
+        });
+    });
+
+    it('it rerenders if props change', () => {
+        return new Promise(resolve => {
+            let chartComponent = mount(<SeatsioSeatingChart />);
+            chartComponent.setProps({ onRenderStarted: () => resolve() });
         });
     });
 });

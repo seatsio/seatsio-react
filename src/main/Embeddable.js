@@ -5,13 +5,21 @@ import React from 'react';
 export default class Embeddable extends React.Component {
 
     async componentDidMount() {
+        this.createAndRenderChart()
+    }
+
+    async componentDidUpdate() {
+        this.destroyChart();
+        this.createAndRenderChart()
+    }
+
+    async createAndRenderChart() {
         const seatsio = await this.getSeatsio();
         const config = this.extractConfigFromProps();
         config.divId = this.props.id;
-        const chart = this.createChart(seatsio, config).render();
-        this.chart = chart;
+        this.chart = this.createChart(seatsio, config).render();
         if (this.props.onRenderStarted) {
-            this.props.onRenderStarted(chart);
+            this.props.onRenderStarted(this.chart);
         }
     }
 
@@ -22,7 +30,11 @@ export default class Embeddable extends React.Component {
     }
 
     componentWillUnmount() {
-        if (this.chart.state !== 'DESTROYED') {
+        this.destroyChart()
+    }
+
+    destroyChart() {
+        if (this.chart && this.chart.state !== 'DESTROYED') {
             this.chart.destroy();
         }
     }

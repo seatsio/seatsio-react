@@ -138,10 +138,16 @@ describe("SeatsioSeatingChart", () => {
         });
     });
 
-    it('it rerenders if props change', () => {
+    it('rerenders if props change', () => {
         return new Promise(resolve => {
             let chartComponent = mount(<SeatsioSeatingChart />);
-            chartComponent.setProps({ onRenderStarted: () => resolve() });
+            chartComponent.setProps({
+                id: 'someID',
+                onRenderStarted: chart => {
+                    expect(chart.props.divId).toBe('someID')
+                    resolve()
+                }
+            });
         });
     });
 });

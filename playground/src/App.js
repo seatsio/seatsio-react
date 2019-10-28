@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-// import SeatsioSeatingChart from '../../src/main/SeatsioSeatingChart'
+import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 function App() {
 	return (
 		<div className="App">
-            {/* <SeatsioSeatingChart /> */}
+            <SeatsioSeatingChart />
 		</div>
 	)
 }

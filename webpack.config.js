@@ -1,12 +1,9 @@
 var path = require('path');
 module.exports = {
-    entry: {
-        index: './src/main/index.js',
-        playground: './src/main/index.js'
-    },
+    entry: './src/main/index.js',
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: '[name].js',
+        filename: 'index.js',
         libraryTarget: 'commonjs2'
     },
     module: {

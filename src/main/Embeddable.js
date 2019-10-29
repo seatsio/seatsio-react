@@ -1,16 +1,18 @@
 /*global seatsio*/
 
 import React from 'react';
+import equal from 'fast-deep-equal';
 
 export default class Embeddable extends React.Component {
-
     async componentDidMount() {
-        this.createAndRenderChart()
+        this.createAndRenderChart();
     }
 
-    async componentDidUpdate() {
-        this.destroyChart();
-        this.createAndRenderChart()
+    async componentDidUpdate(prevProps) {
+        if (!equal(this.props, prevProps)) {
+            this.destroyChart();
+            this.createAndRenderChart()
+        }
     }
 
     async createAndRenderChart() {

@@ -36,6 +36,7 @@
     "webpack-cli": "^3.0.4"
   },
   "dependencies": {
+    "fast-deep-equal": "2.0.1",
     "regenerator-runtime": "^0.13.2"
   }
 }

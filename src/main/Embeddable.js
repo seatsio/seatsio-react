@@ -1,7 +1,7 @@
 /*global seatsio*/
 
 import React from 'react';
-import equal from 'fast-deep-equal';
+import { didPropsChange } from './util';
 
 export default class Embeddable extends React.Component {
     async componentDidMount() {
@@ -9,7 +9,7 @@ export default class Embeddable extends React.Component {
     }
 
     async componentDidUpdate(prevProps) {
-        if (!equal(this.props, prevProps)) {
+        if (didPropsChange(this.props, prevProps)) {
             this.destroyChart();
             this.createAndRenderChart()
         }

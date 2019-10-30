@@ -138,7 +138,7 @@ describe("SeatsioSeatingChart", () => {
         });
     });
 
-    it('rerenders if props change', () => {
+    it('re-renders if props change', () => {
         return new Promise(resolve => {
             let chartComponent = mount(<SeatsioSeatingChart />);
             chartComponent.setProps({

@@ -1,16 +1,18 @@
 /*global seatsio*/
 
 import React from 'react';
+import { didPropsChange } from './util';
 
 export default class Embeddable extends React.Component {
-
     async componentDidMount() {
-        this.createAndRenderChart()
+        this.createAndRenderChart();
     }
 
-    async componentDidUpdate() {
-        this.destroyChart();
-        this.createAndRenderChart()
+    async componentDidUpdate(prevProps) {
+        if (didPropsChange(this.props, prevProps)) {
+            this.destroyChart();
+            this.createAndRenderChart()
+        }
     }
 
     async createAndRenderChart() {

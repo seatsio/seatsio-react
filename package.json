@@ -36,6 +36,15 @@
     "webpack-cli": "^3.0.4"
   },
   "dependencies": {
+    "fast-deep-equal": "2.0.1",
+    "react-fast-compare": "2.0.4",
     "regenerator-runtime": "^0.13.2"
+  },
+  "jest": {
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/playground/"
+    ]
   }
 }

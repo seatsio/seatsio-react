@@ -4,12 +4,19 @@ import React from 'react';
 import { didPropsChange } from './util';
 
 export default class Embeddable extends React.Component {
+    constructor(params) {
+        super(params);
+        this.state = {
+            loaded: false,
+        };
+    }
+
     async componentDidMount() {
         this.createAndRenderChart();
     }
 
     async componentDidUpdate(prevProps) {
-        if (didPropsChange(this.props, prevProps)) {
+        if (didPropsChange(this.props, prevProps) && this.state.loaded) {
             this.destroyChart();
             this.createAndRenderChart()
         }
@@ -51,7 +58,10 @@ export default class Embeddable extends React.Component {
     loadSeatsio() {
         return new Promise((resolve, reject) => {
             let script = document.createElement('script');
-            script.onload = () => resolve(seatsio);
+            script.onload = async () => {
+                await this.setState({ loaded: true });
+                resolve(seatsio);
+            };
             script.onerror = () => reject(`Could not load ${script.src}`);
             script.src = this.props.chartJsUrl;
             document.head.appendChild(script);

@@ -37,11 +37,11 @@ describe("SeatsioChartManager", () => {
                 <SeatsioChartManager
                     id="someID"
                     className="someClassName"
-                    publicKey="aPublicKey"
+                    secretKey="aSecretKey"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
-                            publicKey: 'aPublicKey',
+                            secretKey: 'aSecretKey',
                         });
                         resolve();
                     }}
@@ -56,12 +56,12 @@ describe("SeatsioChartManager", () => {
                 <SeatsioChartManager
                     id="someID"
                     className="someClassName"
-                    publicKey="aPublicKey"
+                    secretKey="aSecretKey"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
-                            publicKey: 'aPublicKey',
+                            secretKey: 'aSecretKey',
                         });
                         resolve();
                     }}

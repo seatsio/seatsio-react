@@ -8,3 +8,4 @@ deploy:
     api_key: $NPM_API_KEY
     on:
       tags: true
+    skip_cleanup: true

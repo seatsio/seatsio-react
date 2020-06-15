@@ -1,6 +1,6 @@
 {
   "name": "@seatsio/seatsio-react",
-  "version": "8.2.0",
+  "version": "8.3.0",
   "main": "build/index.js",
   "repository": {
     "type": "git",

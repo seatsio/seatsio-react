@@ -43,7 +43,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 />
 ```
 
-### onRenderStarted
+### onRenderStarted()
 
 `onRenderStarted` is fired when the chart has started loading, but hasn't rendered yet:
 
@@ -70,6 +70,8 @@ let chart = null;
 
 console.log(chart.selectedObjects);
 ```
+
+### onChartRendered()
 
 `onChartRendered` is fired when the chart is rendered successfully:
 

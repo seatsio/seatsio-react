@@ -12,7 +12,7 @@ npm install --save @seatsio/seatsio-react
 
 ## Regular charts
 
-Minimal:
+### Minimal
 
 ```jsx
 import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
@@ -23,7 +23,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 />
 ```
 
-Custom chart div ID:
+### Custom chart div ID
 
 ```jsx
 <SeatsioSeatingChart
@@ -33,7 +33,7 @@ Custom chart div ID:
 />
 ```
 
-Custom chart div class:
+### Custom chart div class
 
 ```jsx
 <SeatsioSeatingChart
@@ -42,6 +42,8 @@ Custom chart div class:
     className="<theChartDivClassName>"
 />
 ```
+
+### onRenderStarted
 
 `onRenderStarted` is fired when the chart has started loading, but hasn't rendered yet:
 
@@ -79,6 +81,8 @@ console.log(chart.selectedObjects);
 />
 ```
 
+### Parameters
+
 Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/renderer-configure-your-floor-plan
 
 ```jsx
@@ -93,6 +97,10 @@ Other parameters are supported as well. For a full list, check https://docs.seat
     priceFormatter={price => '$' + price}
 />
 ```
+
+### Parameter changes
+
+Whenever one of the properties passed on to `<SeatsioSeatingChart />` changes, the chart destroys itself and rerenders. To avoid such a 'full refresh', you can use `chart.changeConfig()` instead of updating the properties directly. Please check https://docs.seats.io/docs/renderer-chart-properties-chartchangeconfig. Note that `changeConfig()` only supports a subset of all available chart parameters.
 
 ## Event manager
 

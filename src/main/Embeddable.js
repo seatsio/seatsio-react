@@ -9,7 +9,7 @@ export default class Embeddable extends React.Component {
     }
 
     async componentDidUpdate(prevProps) {
-        if (didPropsChange(this.props, prevProps)) {
+        if (didPropsChange(this.props, prevProps) && this.chart) {
             this.destroyChart();
             this.createAndRenderChart()
         }

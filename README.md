@@ -18,7 +18,7 @@ npm install --save @seatsio/seatsio-react
 import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 <SeatsioSeatingChart
-    publicKey="<yourPublicWorkspaceKey>"
+    workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
 />
 ```
@@ -27,7 +27,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicWorkspaceKey>"
+    workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     id="<theChartDivID>"
 />
@@ -37,7 +37,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicWorkspaceKey>"
+    workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     className="<theChartDivClassName>"
 />
@@ -49,7 +49,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicWorkspaceKey>"
+    workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onRenderStarted={chart => { ... }}
 />
@@ -61,7 +61,7 @@ If you store the chart object that's passed to `onRenderStarted`, you can access
 let chart = null;
 
 <SeatsioSeatingChart
-    publicKey="<yourPublicWorkspaceKey>"
+    workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onRenderStarted={createdChart => { chart = createdChart }}
 />
@@ -77,7 +77,7 @@ console.log(chart.selectedObjects);
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicWorkspaceKey>"
+    workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onChartRendered={chart => { ... }}
 />
@@ -89,7 +89,7 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicWorkspaceKey>"
+    workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     pricing={[
         {'category': 1, 'price': 30},
@@ -108,7 +108,7 @@ Whenever one of the properties passed on to `<SeatsioSeatingChart />` changes, t
 import { SeatsioEventManager } from '@seatsio/seatsio-react'
 
 <SeatsioEventManager
-    secretKey="<yourSecretWorkspaceKey>"
+    secretKey="<yourWorkspaceSecretKey>"
     event="<yourEventKey>"
     mode="<manageObjectStatuses or another mode>"
 />
@@ -122,8 +122,7 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 import { SeatsioChartManager } from '@seatsio/seatsio-react'
 
 <SeatsioChartManager
-    secretKey="<yourSecretWorkspaceKey>"
-    workspaceKey="<yourWorkspaceKey>"
+    secretKey="<yourWorkspaceSecretKey>"
     chart="<yourChartKey>"
     mode="<manageRulesets or another mode>"
 />
@@ -139,7 +138,7 @@ To embed the seating chart designer for the purpose of creating a new chart, do 
 import { SeatsioDesigner } from '@seatsio/seatsio-react'
 
 <SeatsioDesigner
-    designerKey="<yourDesignerKey>"    
+    secretKey="<yourWorkspaceSecretKey>"    
 />
 ```
 
@@ -147,7 +146,7 @@ To be able to edit a chart from an embedded designer, you need to specify the ch
  
 ```jsx
 <SeatsioDesigner
-    designerKey="<yourDesignerKey>"
+    secretKey="<yourWorkspaceSecretKey>"    
     chartKey="<yourChartKey>"    
 />
 ```

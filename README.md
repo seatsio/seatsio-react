@@ -18,7 +18,7 @@ npm install --save @seatsio/seatsio-react
 import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 <SeatsioSeatingChart
-    publicKey="<yourPublicKey>"
+    publicKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
 />
 ```
@@ -27,7 +27,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicKey>"
+    publicKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     id="<theChartDivID>"
 />
@@ -37,7 +37,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicKey>"
+    publicKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     className="<theChartDivClassName>"
 />
@@ -49,7 +49,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicKey>"
+    publicKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onRenderStarted={chart => { ... }}
 />
@@ -61,7 +61,7 @@ If you store the chart object that's passed to `onRenderStarted`, you can access
 let chart = null;
 
 <SeatsioSeatingChart
-    publicKey="<yourPublicKey>"
+    publicKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onRenderStarted={createdChart => { chart = createdChart }}
 />
@@ -77,7 +77,7 @@ console.log(chart.selectedObjects);
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicKey>"
+    publicKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onChartRendered={chart => { ... }}
 />
@@ -89,7 +89,7 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 
 ```jsx
 <SeatsioSeatingChart
-    publicKey="<yourPublicKey>"
+    publicKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     pricing={[
         {'category': 1, 'price': 30},
@@ -108,7 +108,7 @@ Whenever one of the properties passed on to `<SeatsioSeatingChart />` changes, t
 import { SeatsioEventManager } from '@seatsio/seatsio-react'
 
 <SeatsioEventManager
-    secretKey="<yourSecretKey>"
+    secretKey="<yourSecretWorkspaceKey>"
     event="<yourEventKey>"
     mode="<manageObjectStatuses or another mode>"
 />
@@ -122,7 +122,7 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 import { SeatsioChartManager } from '@seatsio/seatsio-react'
 
 <SeatsioChartManager
-    secretKey="<yourSecretKey>"
+    secretKey="<yourSecretWorkspaceKey>"
     workspaceKey="<yourWorkspaceKey>"
     chart="<yourChartKey>"
     mode="<manageRulesets or another mode>"

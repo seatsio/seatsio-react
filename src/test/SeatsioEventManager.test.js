@@ -1,38 +1,38 @@
-import React from "react";
-import Enzyme, {mount} from "enzyme";
-import Adapter from 'enzyme-adapter-react-16';
-import {SeatsioEventManager} from "../main/index";
-import Embeddable from "../main/Embeddable";
+import React from 'react'
+import Enzyme, {mount} from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import {SeatsioEventManager} from '../main/index'
+import Embeddable from '../main/Embeddable'
 
-Enzyme.configure({adapter: new Adapter()});
+Enzyme.configure({ adapter: new Adapter() })
 
-describe("SeatsioEventManager", () => {
+describe('SeatsioEventManager', () => {
 
     let seatsioMock = {
 
         EventManager: class {
 
-            constructor(props) {
-                this.props = props;
+            constructor (props) {
+                this.props = props
             }
 
-            render() {
-                return this;
+            render () {
+                return this
             }
         }
-    };
+    }
 
     Embeddable.prototype.loadSeatsio = () => {
-        return Promise.resolve(seatsioMock);
-    };
+        return Promise.resolve(seatsioMock)
+    }
 
     it('renders the event manager', () => {
         let chart = mount((
             <SeatsioEventManager/>
-        ));
+        ))
 
-        expect(chart.find('div#chart').length).toEqual(1);
-    });
+        expect(chart.find('div#chart').length).toEqual(1)
+    })
 
     it('passes parameters onto the event manager', () => {
         return new Promise(resolve => {
@@ -45,12 +45,12 @@ describe("SeatsioEventManager", () => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             publicKey: 'aPublicKey',
-                        });
-                        resolve();
+                        })
+                        resolve()
                     }}/>
-            ));
-        });
-    });
+            ))
+        })
+    })
 
     it('does not pass chartJsUrl onto the event manager', () => {
         return new Promise(resolve => {
@@ -64,10 +64,10 @@ describe("SeatsioEventManager", () => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
                             publicKey: 'aPublicKey',
-                        });
-                        resolve();
+                        })
+                        resolve()
                     }}/>
-            ));
-        });
-    });
-});
+            ))
+        })
+    })
+})

@@ -1,7 +1,7 @@
-import React from "react"
-import { didPropsChange } from "../main/util"
+import React from 'react'
+import {didPropsChange} from '../main/util'
 
-describe("didPropsChange", () => {
+describe('didPropsChange', () => {
     it('returns true if a number changes', () => {
         const prevProps = {
             ducks: 1
@@ -14,10 +14,10 @@ describe("didPropsChange", () => {
 
     it('returns true if a string changes', () => {
         const prevProps = {
-            name: "Clarke the duck"
+            name: 'Clarke the duck'
         }
         const nextProps = {
-            name: "Stephan the duck"
+            name: 'Stephan the duck'
         }
         expect(didPropsChange(prevProps, nextProps)).toBe(true)
     })

@@ -27,7 +27,7 @@ export default class Embeddable extends React.Component {
 
     extractConfigFromProps () {
         // noinspection JSUnusedLocalSymbols
-        let { id, className, onRenderStarted, chartJsUrl, ...config } = this.props
+        let { id, className, onRenderStarted, chartJsUrl, region, ...config } = this.props
         return config
     }
 
@@ -44,7 +44,7 @@ export default class Embeddable extends React.Component {
     getSeatsio () {
         if (typeof seatsio === 'undefined') {
             return this.loadSeatsio()
-        } else if (seatsio.chartJsUrl !== this.props.chartJsUrl) {
+        } else if (seatsio.region !== this.props.region) {
             seatsio = undefined
             return this.loadSeatsio()
         } else {
@@ -56,11 +56,11 @@ export default class Embeddable extends React.Component {
         return new Promise((resolve, reject) => {
             let script = document.createElement('script')
             script.onload = () => {
-                seatsio.chartJsUrl = this.props.chartJsUrl
+                seatsio.region = this.props.region
                 resolve(seatsio)
             }
             script.onerror = () => reject(`Could not load ${script.src}`)
-            script.src = this.props.chartJsUrl
+            script.src = this.props.chartJsUrl.replace('{region}', this.props.region)
             document.head.appendChild(script)
         })
     }
@@ -74,5 +74,5 @@ export default class Embeddable extends React.Component {
 
 Embeddable.defaultProps = {
     id: 'chart',
-    chartJsUrl: 'https://cdn.seatsio.net/chart.js'
+    chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
 }

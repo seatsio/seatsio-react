@@ -1,7 +1,7 @@
 import React from 'react'
 import Enzyme, {mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {SeatsioDesigner} from '../main/index'
+import {SeatsioChartManager, SeatsioDesigner} from '../main/index'
 import Embeddable from '../main/Embeddable'
 
 Enzyme.configure({ adapter: new Adapter() })
@@ -52,13 +52,14 @@ describe('SeatsioDesigner', () => {
         })
     })
 
-    it('does not pass chartJsUrl onto the designer', () => {
+    it('does not pass chartJsUrl and region onto the designer', () => {
         return new Promise(resolve => {
             mount(
                 <SeatsioDesigner
                     id="someID"
                     className="someClassName"
                     designerKey="aDesignerKey"
+                    region="eu"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({

@@ -1,7 +1,7 @@
 import React from 'react'
 import Enzyme, {mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {SeatsioSeatingChart} from '../main/index'
+import {SeatsioChartManager, SeatsioSeatingChart} from '../main/index'
 import Embeddable from '../main/Embeddable'
 
 Enzyme.configure({ adapter: new Adapter() })
@@ -82,13 +82,14 @@ describe('SeatsioSeatingChart', () => {
         })
     })
 
-    it('does not pass chartJsUrl onto the chart', () => {
+    it('does not pass chartJsUrl and region onto the chart', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioSeatingChart
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
+                    region="eu"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({

@@ -1,7 +1,7 @@
 import React from 'react'
 import Enzyme, {mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {SeatsioEventManager} from '../main/index'
+import {SeatsioChartManager, SeatsioEventManager} from '../main/index'
 import Embeddable from '../main/Embeddable'
 
 Enzyme.configure({ adapter: new Adapter() })
@@ -52,13 +52,14 @@ describe('SeatsioEventManager', () => {
         })
     })
 
-    it('does not pass chartJsUrl onto the event manager', () => {
+    it('does not pass chartJsUrl and region onto the event manager', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioEventManager
                     id="someID"
                     className="someClassName"
                     publicKey="aPublicKey"
+                    region="eu"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({

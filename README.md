@@ -20,6 +20,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 <SeatsioSeatingChart
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
+    region="eu"
 />
 ```
 
@@ -30,6 +31,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     id="<theChartDivID>"
+    region="eu"
 />
 ```
 
@@ -40,6 +42,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     className="<theChartDivClassName>"
+    region="eu"
 />
 ```
 
@@ -52,6 +55,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onRenderStarted={chart => { ... }}
+    region="eu"
 />
 ```
 
@@ -64,6 +68,7 @@ let chart = null;
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onRenderStarted={createdChart => { chart = createdChart }}
+    region="eu"
 />
 
 ...
@@ -80,6 +85,7 @@ console.log(chart.selectedObjects);
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     onChartRendered={chart => { ... }}
+    region="eu"
 />
 ```
 
@@ -97,6 +103,7 @@ Other parameters are supported as well. For a full list, check https://docs.seat
         {'category': 3, 'price': 50}
     ]}
     priceFormatter={price => '$' + price}
+    region="eu"
 />
 ```
 
@@ -111,6 +118,7 @@ import { SeatsioEventManager } from '@seatsio/seatsio-react'
     secretKey="<yourWorkspaceSecretKey>"
     event="<yourEventKey>"
     mode="<manageObjectStatuses or another mode>"
+    region="eu"
 />
 ```
 
@@ -125,6 +133,7 @@ import { SeatsioChartManager } from '@seatsio/seatsio-react'
     secretKey="<yourWorkspaceSecretKey>"
     chart="<yourChartKey>"
     mode="<manageRulesets or another mode>"
+    region="eu"
 />
 ```
 
@@ -138,7 +147,8 @@ To embed the seating chart designer for the purpose of creating a new chart, do 
 import { SeatsioDesigner } from '@seatsio/seatsio-react'
 
 <SeatsioDesigner
-    secretKey="<yourWorkspaceSecretKey>"    
+    secretKey="<yourWorkspaceSecretKey>"
+    region="eu"
 />
 ```
 
@@ -147,7 +157,8 @@ To be able to edit a chart from an embedded designer, you need to specify the ch
 ```jsx
 <SeatsioDesigner
     secretKey="<yourWorkspaceSecretKey>"    
-    chartKey="<yourChartKey>"    
+    chartKey="<yourChartKey>"
+    region="eu"
 />
 ```
     

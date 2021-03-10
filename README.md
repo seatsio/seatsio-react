@@ -23,6 +23,18 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
 />
 ```
 
+### Setting the height of the chart
+
+By default, `<SeatsioSeatingChart>` is as wide as its parent div, and as high as the drawing that's rendered.
+
+To set an explicit height, use CSS on the div that gets created by `<SeatsioSeatingChart>`:
+
+```css
+#chart {
+    height: 800px; // or height: 100%, or height: 100vh, depending on your requirements
+}
+```
+
 ### Custom chart div ID
 
 ```jsx
@@ -128,8 +140,6 @@ import { SeatsioChartManager } from '@seatsio/seatsio-react'
 />
 ```
 
-
-
 ## Seating Chart Designer
 
 To embed the seating chart designer for the purpose of creating a new chart, do this:
@@ -150,6 +160,15 @@ To be able to edit a chart from an embedded designer, you need to specify the ch
     chartKey="<yourChartKey>"    
 />
 ```
-    
 
 Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/embedded-designer-configuration
+
+### Setting the height of the designer
+
+By default, the chart designer gets rendered with a minimal height. To change that, use CSS on the div that gets created by `<SeatsioDesigner>`:
+
+```css
+#chart {
+    height: 800px; // or height: 100%, or height: 100vh, depending on your requirements
+}
+```

@@ -50,13 +50,14 @@ describe('SeatsioChartManager', () => {
         })
     })
 
-    it('does not pass chartJsUrl onto the chart manager', () => {
+    it('does not pass chartJsUrl and region onto the chart manager', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioChartManager
                     id="someID"
                     className="someClassName"
                     secretKey="aSecretKey"
+                    region="eu"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({

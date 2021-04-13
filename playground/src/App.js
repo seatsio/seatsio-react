@@ -35,6 +35,7 @@ class App extends React.Component {
                     publicKey="publicDemoKey"
                     event="theatreEvent"
                     colorScheme={this.state.colorScheme}
+                    region="eu"
                 />
             </div>
         )

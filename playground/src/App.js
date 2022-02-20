@@ -32,7 +32,7 @@ class App extends React.Component {
                 </select>
                 <h1>Seats.io React playground</h1>
                 <SeatsioSeatingChart
-                    publicKey="publicDemoKey"
+                    workspaceKey="publicDemoKey"
                     event="theatreEvent"
                     colorScheme={this.state.colorScheme}
                     region="eu"

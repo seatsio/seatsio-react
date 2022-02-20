@@ -40,11 +40,11 @@ describe('SeatsioEventManager', () => {
                 <SeatsioEventManager
                     id="someID"
                     className="someClassName"
-                    publicKey="aPublicKey"
+                    workspaceKey="aworkspaceKey"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
-                            publicKey: 'aPublicKey',
+                            workspaceKey: 'aworkspaceKey',
                         })
                         resolve()
                     }}/>
@@ -58,13 +58,13 @@ describe('SeatsioEventManager', () => {
                 <SeatsioEventManager
                     id="someID"
                     className="someClassName"
-                    publicKey="aPublicKey"
+                    workspaceKey="aworkspaceKey"
                     region="eu"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
                             divId: 'someID',
-                            publicKey: 'aPublicKey',
+                            workspaceKey: 'aworkspaceKey',
                         })
                         resolve()
                     }}/>

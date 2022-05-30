@@ -134,7 +134,7 @@ import { SeatsioEventManager } from '@seatsio/seatsio-react'
 />
 ```
 
-Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/configuring-event-manager
+Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/event-manager/configuring
 
 ## Chart manager
 

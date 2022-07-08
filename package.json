@@ -1,6 +1,6 @@
 {
   "name": "@seatsio/seatsio-react",
-  "version": "10.1.0",
+  "version": "11.0.0",
   "main": "build/index.js",
   "repository": {
     "type": "git",
@@ -37,8 +37,7 @@
   },
   "dependencies": {
     "fast-deep-equal": "2.0.1",
-    "react-fast-compare": "2.0.4",
-    "regenerator-runtime": "^0.13.2"
+    "react-fast-compare": "2.0.4"
   },
   "jest": {
     "verbose": true,

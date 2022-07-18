@@ -4,6 +4,11 @@ import React from 'react'
 import {didPropsChange} from './util'
 
 export default class Embeddable extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.container = React.createRef();
+    }
     async componentDidMount () {
         this.createAndRenderChart()
     }
@@ -18,7 +23,7 @@ export default class Embeddable extends React.Component {
     async createAndRenderChart () {
         const seatsio = await this.getSeatsio()
         const config = this.extractConfigFromProps()
-        config.divId = this.props.id
+        config.container = this.container.current
         this.chart = this.createChart(seatsio, config).render()
         if (this.props.onRenderStarted) {
             this.props.onRenderStarted(this.chart)
@@ -27,7 +32,7 @@ export default class Embeddable extends React.Component {
 
     extractConfigFromProps () {
         // noinspection JSUnusedLocalSymbols
-        let { id, className, onRenderStarted, chartJsUrl, region, ...config } = this.props
+        let { divId, container, onRenderStarted, chartJsUrl, region, ...config } = this.props
         return config
     }
 
@@ -67,12 +72,11 @@ export default class Embeddable extends React.Component {
 
     render () {
         return (
-            <div id={this.props.id} className={this.props.className}/>
+            <div ref={this.container} style={{'height': '100%'}} />
         )
     }
 }
 
 Embeddable.defaultProps = {
-    id: 'chart',
     chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
 }

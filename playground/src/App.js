@@ -31,12 +31,14 @@ class App extends React.Component {
                     <option>1</option>
                 </select>
                 <h1>Seats.io React playground</h1>
-                <SeatsioSeatingChart
-                    workspaceKey="publicDemoKey"
-                    event="theatreEvent"
-                    colorScheme={this.state.colorScheme}
-                    region="eu"
-                />
+                <div id="chart">
+                    <SeatsioSeatingChart
+                        workspaceKey="publicDemoKey"
+                        event="smallTheatreEvent1"
+                        colorScheme={this.state.colorScheme}
+                        region="eu"
+                    />
+                </div>
             </div>
         )
     }

@@ -3,6 +3,7 @@ import Enzyme, {mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import {SeatsioChartManager, SeatsioEventManager} from '../main/index'
 import Embeddable from '../main/Embeddable'
+import {removeContainer} from "./util";
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -13,7 +14,7 @@ describe('SeatsioEventManager', () => {
         EventManager: class {
 
             constructor (props) {
-                this.props = props
+                this.props = removeContainer(props)
             }
 
             render () {
@@ -31,20 +32,17 @@ describe('SeatsioEventManager', () => {
             <SeatsioEventManager/>
         ))
 
-        expect(chart.find('div#chart').length).toEqual(1)
+        expect(chart.find('div').length).toEqual(1)
     })
 
     it('passes parameters onto the event manager', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioEventManager
-                    id="someID"
-                    className="someClassName"
                     workspaceKey="aworkspaceKey"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
-                            divId: 'someID',
-                            workspaceKey: 'aworkspaceKey',
+                            workspaceKey: 'aworkspaceKey'
                         })
                         resolve()
                     }}/>
@@ -56,15 +54,12 @@ describe('SeatsioEventManager', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioEventManager
-                    id="someID"
-                    className="someClassName"
                     workspaceKey="aworkspaceKey"
                     region="eu"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
-                            divId: 'someID',
-                            workspaceKey: 'aworkspaceKey',
+                            workspaceKey: 'aworkspaceKey'
                         })
                         resolve()
                     }}/>

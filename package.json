@@ -36,8 +36,6 @@
     "webpack-cli": "^3.0.4"
   },
   "dependencies": {
-    "fast-deep-equal": "2.0.1",
-    "react-fast-compare": "2.0.4"
   },
   "jest": {
     "verbose": true,

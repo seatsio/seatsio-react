@@ -15,48 +15,20 @@ npm install --save @seatsio/seatsio-react
 ### Minimal
 
 ```jsx
-import { SeatsioSeatingChart } from '@seatsio/seatsio-react'
+import { SeatsioSeatingChart } from '@seatsio/seatsio-react';
 
-<SeatsioSeatingChart
-    workspaceKey="<yourPublicWorkspaceKey>"
-    event="<yourEventKey>"
-    region="eu"
-/>
+<div style={{ 'height': '500px' }}>
+    <SeatsioSeatingChart
+        workspaceKey="<yourPublicWorkspaceKey>"
+        event="<yourEventKey>"
+        region="eu"
+    />
+</div>
 ```
-
-### Setting the height of the chart
 
 By default, `<SeatsioSeatingChart>` is as wide as its parent div, and as high as the drawing that's rendered.
 
-To set an explicit height, use CSS on the div that gets created by `<SeatsioSeatingChart>`:
-
-```css
-#chart {
-    height: 800px; // or height: 100%, or height: 100vh, depending on your requirements
-}
-```
-
-### Custom chart div ID
-
-```jsx
-<SeatsioSeatingChart
-    workspaceKey="<yourPublicWorkspaceKey>"
-    event="<yourEventKey>"
-    id="<theChartDivID>"
-    region="eu"
-/>
-```
-
-### Custom chart div class
-
-```jsx
-<SeatsioSeatingChart
-    workspaceKey="<yourPublicWorkspaceKey>"
-    event="<yourEventKey>"
-    className="<theChartDivClassName>"
-    region="eu"
-/>
-```
+To set an explicit height, style the element (e.g. a div) that contains the `<SeatsioSeatingChart>`.
 
 ### onRenderStarted()
 
@@ -124,14 +96,16 @@ Whenever one of the properties passed on to `<SeatsioSeatingChart />` changes, t
 ## Event manager
 
 ```jsx
-import { SeatsioEventManager } from '@seatsio/seatsio-react'
+import { SeatsioEventManager } from '@seatsio/seatsio-react';
 
-<SeatsioEventManager
-    secretKey="<yourWorkspaceSecretKey>"
-    event="<yourEventKey>"
-    mode="<manageObjectStatuses or another mode>"
-    region="eu"
-/>
+<div style={{ 'height': '500px' }}>
+    <SeatsioEventManager
+        secretKey="<yourWorkspaceSecretKey>"
+        event="<yourEventKey>"
+        mode="<manageObjectStatuses or another mode>"
+        region="eu"
+    />
+</div>
 ```
 
 Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/event-manager/configuring
@@ -139,14 +113,16 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 ## Chart manager
 
 ```jsx
-import { SeatsioChartManager } from '@seatsio/seatsio-react'
+import { SeatsioChartManager } from '@seatsio/seatsio-react';
 
-<SeatsioChartManager
-    secretKey="<yourWorkspaceSecretKey>"
-    chart="<yourChartKey>"
-    mode="<manageRulesets or another mode>"
-    region="eu"
-/>
+<div style={{ 'height': '500px' }}>
+    <SeatsioChartManager
+        secretKey="<yourWorkspaceSecretKey>"
+        chart="<yourChartKey>"
+        mode="<manageRulesets or another mode>"
+        region="eu"
+    />
+</div>
 ```
 
 ## Seating Chart Designer
@@ -154,12 +130,14 @@ import { SeatsioChartManager } from '@seatsio/seatsio-react'
 To embed the seating chart designer for the purpose of creating a new chart, do this:
 
 ```jsx
-import { SeatsioDesigner } from '@seatsio/seatsio-react'
+import { SeatsioDesigner } from '@seatsio/seatsio-react';
 
-<SeatsioDesigner
-    secretKey="<yourWorkspaceSecretKey>"
-    region="eu"
-/>
+<div style={{ 'height': '500px' }}>
+    <SeatsioDesigner
+        secretKey="<yourWorkspaceSecretKey>"
+        region="eu"
+    />
+</div>
 ```
 
 To be able to edit a chart from an embedded designer, you need to specify the chart to load:
@@ -173,13 +151,3 @@ To be able to edit a chart from an embedded designer, you need to specify the ch
 ```
 
 Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/embedded-designer-configuration
-
-### Setting the height of the designer
-
-By default, the chart designer gets rendered with a minimal height. To change that, use CSS on the div that gets created by `<SeatsioDesigner>`:
-
-```css
-#chart {
-    height: 800px; // or height: 100%, or height: 100vh, depending on your requirements
-}
-```

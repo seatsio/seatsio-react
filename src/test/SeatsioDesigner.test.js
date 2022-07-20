@@ -3,6 +3,7 @@ import Enzyme, {mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import {SeatsioChartManager, SeatsioDesigner} from '../main/index'
 import Embeddable from '../main/Embeddable'
+import {removeContainer} from "./util";
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -13,7 +14,7 @@ describe('SeatsioDesigner', () => {
         SeatingChartDesigner: class {
 
             constructor (props) {
-                this.props = props
+                this.props = removeContainer(props)
             }
 
             render () {
@@ -31,20 +32,17 @@ describe('SeatsioDesigner', () => {
             <SeatsioDesigner/>
         )
 
-        expect(chart.find('div#chart').length).toEqual(1)
+        expect(chart.find('div').length).toEqual(1)
     })
 
     it('passes parameters onto the designer', () => {
         return new Promise(resolve => {
             mount(
                 <SeatsioDesigner
-                    id="someID"
-                    className="someClassName"
                     designerKey="aDesignerKey"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
-                            divId: 'someID',
-                            designerKey: 'aDesignerKey',
+                            designerKey: 'aDesignerKey'
                         })
                         resolve()
                     }}/>
@@ -56,15 +54,12 @@ describe('SeatsioDesigner', () => {
         return new Promise(resolve => {
             mount(
                 <SeatsioDesigner
-                    id="someID"
-                    className="someClassName"
                     designerKey="aDesignerKey"
                     region="eu"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
-                            divId: 'someID',
-                            designerKey: 'aDesignerKey',
+                            designerKey: 'aDesignerKey'
                         })
                         resolve()
                     }}/>

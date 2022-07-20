@@ -1,8 +1,9 @@
 import React from 'react'
 import Enzyme, {mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import {SeatsioChartManager, SeatsioSeatingChart} from '../main/index'
+import {SeatsioSeatingChart} from '../main/index'
 import Embeddable from '../main/Embeddable'
+import {removeContainer} from "./util";
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -13,7 +14,7 @@ describe('SeatsioSeatingChart', () => {
         SeatingChart: class {
 
             constructor (props) {
-                this.props = props
+                this.props = removeContainer(props)
             }
 
             render () {
@@ -26,55 +27,26 @@ describe('SeatsioSeatingChart', () => {
         return Promise.resolve(seatsioMock)
     }
 
-    it('renders the chart in a div with default ID "chart"', () => {
-        let chart = mount((
-            <SeatsioSeatingChart/>
-        ))
-
-        expect(chart.find('div#chart').length).toEqual(1)
-    })
-
     it('renders the chart with default properties', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioSeatingChart
                     onRenderStarted={chart => {
-                        expect(chart.props).toEqual({
-                            divId: 'chart'
-                        })
+                        expect(chart.props).toEqual({})
                         resolve()
                     }}/>
             ))
         })
     })
 
-    it('renders the chart in a div with the specified ID', () => {
-        let chart = mount((
-            <SeatsioSeatingChart id="mySuperDuperChart"/>
-        ))
-
-        expect(chart.find('div#mySuperDuperChart').length).toEqual(1)
-    })
-
-    it('adds the specified class', () => {
-        let chart = mount((
-            <SeatsioSeatingChart className="charty"/>
-        ))
-
-        expect(chart.find('div.charty').length).toEqual(1)
-    })
-
     it('passes parameters onto the chart', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioSeatingChart
-                    id="someID"
-                    className="someClassName"
                     workspaceKey="aworkspaceKey"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
-                            divId: 'someID',
-                            workspaceKey: 'aworkspaceKey',
+                            workspaceKey: 'aworkspaceKey'
                         })
                         resolve()
                     }}/>
@@ -86,15 +58,12 @@ describe('SeatsioSeatingChart', () => {
         return new Promise(resolve => {
             mount((
                 <SeatsioSeatingChart
-                    id="someID"
-                    className="someClassName"
                     workspaceKey="aworkspaceKey"
                     region="eu"
                     chartJsUrl="https://www.google.com"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
-                            divId: 'someID',
-                            workspaceKey: 'aworkspaceKey',
+                            workspaceKey: 'aworkspaceKey'
                         })
                         resolve()
                     }}/>
@@ -136,19 +105,6 @@ describe('SeatsioSeatingChart', () => {
                     }}
                 />
             ))
-        })
-    })
-
-    it('re-renders if props change', () => {
-        return new Promise(resolve => {
-            let chartComponent = mount(<SeatsioSeatingChart/>)
-            chartComponent.setProps({
-                id: 'someID',
-                onRenderStarted: chart => {
-                    expect(chart.props.divId).toBe('someID')
-                    resolve()
-                }
-            })
         })
     })
 })

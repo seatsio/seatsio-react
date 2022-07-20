@@ -1,11 +1,8 @@
 import React from 'react'
-import Enzyme, {mount} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import {SeatsioChartManager} from '../main/index'
 import Embeddable from '../main/Embeddable'
 import {removeContainer} from "./util";
-
-Enzyme.configure({ adapter: new Adapter() })
+import {render} from '@testing-library/react'
 
 describe('SeatsioChartManager', () => {
     let seatsioMock = {
@@ -17,6 +14,9 @@ describe('SeatsioChartManager', () => {
             render () {
                 return this
             }
+
+            destroy () {
+            }
         }
     }
 
@@ -24,17 +24,9 @@ describe('SeatsioChartManager', () => {
         return Promise.resolve(seatsioMock)
     }
 
-    it('renders the chart manager', () => {
-        let chart = mount((
-            <SeatsioChartManager/>
-        ))
-
-        expect(chart.find('div').length).toEqual(1)
-    })
-
     it('passes parameters onto the chart manager', () => {
         return new Promise(resolve => {
-            mount((
+            render(
                 <SeatsioChartManager
                     secretKey="aSecretKey"
                     onRenderStarted={chart => {
@@ -44,13 +36,13 @@ describe('SeatsioChartManager', () => {
                         resolve()
                     }}
                 />
-            ))
+            )
         })
     })
 
     it('does not pass chartJsUrl and region onto the chart manager', () => {
         return new Promise(resolve => {
-            mount((
+            render(
                 <SeatsioChartManager
                     secretKey="aSecretKey"
                     region="eu"
@@ -62,7 +54,7 @@ describe('SeatsioChartManager', () => {
                         resolve()
                     }}
                 />
-            ))
+            )
         })
     })
 })

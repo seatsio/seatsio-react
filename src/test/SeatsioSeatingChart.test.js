@@ -1,11 +1,8 @@
 import React from 'react'
-import Enzyme, {mount} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import {SeatsioSeatingChart} from '../main/index'
 import Embeddable from '../main/Embeddable'
+import {render} from '@testing-library/react'
 import {removeContainer} from "./util";
-
-Enzyme.configure({ adapter: new Adapter() })
 
 describe('SeatsioSeatingChart', () => {
 
@@ -13,12 +10,15 @@ describe('SeatsioSeatingChart', () => {
 
         SeatingChart: class {
 
-            constructor (props) {
+            constructor(props) {
                 this.props = removeContainer(props)
             }
 
-            render () {
+            render() {
                 return this
+            }
+
+            destroy() {
             }
         }
     }
@@ -29,34 +29,37 @@ describe('SeatsioSeatingChart', () => {
 
     it('renders the chart with default properties', () => {
         return new Promise(resolve => {
-            mount((
+            render(
                 <SeatsioSeatingChart
                     onRenderStarted={chart => {
-                        expect(chart.props).toEqual({})
+                        expect(chart.props).toEqual({
+                        })
                         resolve()
-                    }}/>
-            ))
+                    }}
+                />
+            )
         })
     })
 
     it('passes parameters onto the chart', () => {
         return new Promise(resolve => {
-            mount((
+            render(
                 <SeatsioSeatingChart
-                    workspaceKey="aworkspaceKey"
+                    workspaceKey="aWorkspaceKey"
                     onRenderStarted={chart => {
                         expect(chart.props).toEqual({
-                            workspaceKey: 'aworkspaceKey'
+                            workspaceKey: 'aWorkspaceKey',
                         })
                         resolve()
-                    }}/>
-            ))
+                    }}
+                />
+            )
         })
     })
 
     it('does not pass chartJsUrl and region onto the chart', () => {
         return new Promise(resolve => {
-            mount((
+            render(
                 <SeatsioSeatingChart
                     workspaceKey="aworkspaceKey"
                     region="eu"
@@ -66,8 +69,9 @@ describe('SeatsioSeatingChart', () => {
                             workspaceKey: 'aworkspaceKey'
                         })
                         resolve()
-                    }}/>
-            ))
+                    }}
+                />
+            )
         })
     })
 
@@ -76,7 +80,7 @@ describe('SeatsioSeatingChart', () => {
         seatsioMock.SeatingChart.prototype.destroy = mockedDestroy
 
         return new Promise(resolve => {
-            let chart = mount((
+            let chart = render(
                 <SeatsioSeatingChart
                     onRenderStarted={() => {
                         chart.unmount()
@@ -85,7 +89,7 @@ describe('SeatsioSeatingChart', () => {
                         resolve()
                     }}
                 />
-            ))
+            )
         })
     })
 
@@ -94,7 +98,7 @@ describe('SeatsioSeatingChart', () => {
         seatsioMock.SeatingChart.prototype.destroy = mockedDestroy
 
         return new Promise(resolve => {
-            let chartComponent = mount((
+            let chartComponent = render(
                 <SeatsioSeatingChart
                     onRenderStarted={chart => {
                         chart.state = 'DESTROYED'
@@ -104,7 +108,20 @@ describe('SeatsioSeatingChart', () => {
                         resolve()
                     }}
                 />
-            ))
+            )
+        })
+    })
+
+    it('re-renders if props change', () => {
+        return new Promise(resolve => {
+            let {rerender} = render(<SeatsioSeatingChart/>)
+            rerender(
+                <SeatsioSeatingChart
+                    onRenderStarted={() => {
+                        resolve()
+                    }}
+                />
+            )
         })
     })
 })

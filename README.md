@@ -26,9 +26,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react';
 </div>
 ```
 
-By default, `<SeatsioSeatingChart>` is as wide as its parent div, and as high as the drawing that's rendered.
-
-To set an explicit height, style the element (e.g. a div) that contains the `<SeatsioSeatingChart>`.
+The chart uses 100% of the width and height of the DOM element (e.g. a div) in which you render it. Play with the size of that element to change the chart size.
 
 ### onRenderStarted()
 

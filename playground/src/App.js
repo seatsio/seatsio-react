@@ -37,6 +37,7 @@ class App extends React.Component {
                         event="smallTheatreEvent1"
                         colorScheme={this.state.colorScheme}
                         region="eu"
+                        chartJsUrl="https://cdn-staging-{region}.seatsio.net/chart.js"
                     />
                 </div>
             </div>

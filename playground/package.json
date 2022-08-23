@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@seatsio/seatsio-react": "./..",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "1.1.5"
+    "@seatsio/seatsio-react": "file:./..",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }

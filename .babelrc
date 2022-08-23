@@ -1,14 +1,11 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "exclude": ["transform-regenerator"]
       }
-    ]
-  ],
-  "plugins": [
-    "transform-object-rest-spread",
-    "transform-react-jsx"
+    ],
+    "@babel/preset-react"
   ]
 }

@@ -1,11 +1,8 @@
 import React from 'react'
-import Enzyme, {mount} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-import {SeatsioChartManager, SeatsioEventManager} from '../main/index'
+import {SeatsioEventManager} from '../main/index'
 import Embeddable from '../main/Embeddable'
 import {removeContainer} from "./util";
-
-Enzyme.configure({ adapter: new Adapter() })
+import {render} from '@testing-library/react'
 
 describe('SeatsioEventManager', () => {
 
@@ -13,12 +10,15 @@ describe('SeatsioEventManager', () => {
 
         EventManager: class {
 
-            constructor (props) {
+            constructor(props) {
                 this.props = removeContainer(props)
             }
 
-            render () {
+            render() {
                 return this
+            }
+
+            destroy() {
             }
         }
     }
@@ -27,17 +27,9 @@ describe('SeatsioEventManager', () => {
         return Promise.resolve(seatsioMock)
     }
 
-    it('renders the event manager', () => {
-        let chart = mount((
-            <SeatsioEventManager/>
-        ))
-
-        expect(chart.find('div').length).toEqual(1)
-    })
-
     it('passes parameters onto the event manager', () => {
         return new Promise(resolve => {
-            mount((
+            render(
                 <SeatsioEventManager
                     workspaceKey="aworkspaceKey"
                     onRenderStarted={chart => {
@@ -46,13 +38,13 @@ describe('SeatsioEventManager', () => {
                         })
                         resolve()
                     }}/>
-            ))
+            )
         })
     })
 
     it('does not pass chartJsUrl and region onto the event manager', () => {
         return new Promise(resolve => {
-            mount((
+            render(
                 <SeatsioEventManager
                     workspaceKey="aworkspaceKey"
                     region="eu"
@@ -62,8 +54,9 @@ describe('SeatsioEventManager', () => {
                             workspaceKey: 'aworkspaceKey'
                         })
                         resolve()
-                    }}/>
-            ))
+                    }}
+                />
+            )
         })
     })
 })

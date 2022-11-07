@@ -9,8 +9,11 @@ export default class Embeddable extends React.Component {
         super(props);
         this.container = React.createRef();
     }
+
     async componentDidMount () {
-        this.createAndRenderChart()
+        if(!this.rendering) {
+            this.rendering = this.createAndRenderChart()
+        }
     }
 
     async componentDidUpdate (prevProps) {

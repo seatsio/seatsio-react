@@ -75,7 +75,7 @@ export default class Embeddable extends React.Component {
 
     render () {
         return (
-            <div ref={this.container} style={{'height': '100%'}} />
+            <div ref={this.container} style={{'height': '100%', 'width': '100%'}} />
         )
     }
 }

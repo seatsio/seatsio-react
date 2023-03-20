@@ -1,0 +1,44 @@
+# Very important!
+# Make sure that the github token has read AND WRITE access on github.
+#   1. hit https://github.com/seatsio/[REPO]/settings/actions
+#   2. under "Workflow permissions", make sure "Read and write permissions" is checked instead of the (default?) read only.
+#
+
+name: Release
+run-name: Release ${{ github.repository }}
+on:
+  workflow_dispatch:
+    inputs:
+      versionToBump:
+        description: 'The version to bump. Major for incompatible API changes, minor for adding BC features'
+        required: true
+        type: choice
+        options:
+          - minor
+          - major
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: fregante/setup-git-user@v2
+      - id: install-zx
+        run: npm i -g zx
+      - id: install-semver-tool
+        run: |
+          wget -O /usr/local/bin/semver https://raw.githubusercontent.com/fsaintjacques/semver-tool/master/src/semver
+          chmod +x /usr/local/bin/semver
+      - run: zx ./release.mjs -v $VERSION_TO_BUMP
+        env:
+          VERSION_TO_BUMP: ${{ inputs.versionToBump }}
+          GH_TOKEN: ${{ github.token }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: yarn install
+      - run: yarn build
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+

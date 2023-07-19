@@ -108,21 +108,6 @@ import { SeatsioEventManager } from '@seatsio/seatsio-react';
 
 Other parameters are supported as well. For a full list, check https://docs.seats.io/docs/event-manager/configuring
 
-## Chart manager
-
-```jsx
-import { SeatsioChartManager } from '@seatsio/seatsio-react';
-
-<div style={{ 'height': '500px' }}>
-    <SeatsioChartManager
-        secretKey="<yourWorkspaceSecretKey>"
-        chart="<yourChartKey>"
-        mode="<manageRulesets or another mode>"
-        region="eu"
-    />
-</div>
-```
-
 ## Seating Chart Designer
 
 To embed the seating chart designer for the purpose of creating a new chart, do this:

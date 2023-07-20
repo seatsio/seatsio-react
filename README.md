@@ -10,6 +10,8 @@ npm install --save @seatsio/seatsio-react
 
 # Usage
 
+**Note** If you're using seatsio-react in a Next.js project, ensure you use the `'use client'` directive to force client-side rendering.
+
 ## Regular charts
 
 ### Minimal

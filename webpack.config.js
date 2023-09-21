@@ -1,6 +1,6 @@
 var path = require('path');
 module.exports = {
-    entry: ['./src/main/index.js'],
+    entry: ['./src/main/index.ts'],
     mode: 'production',
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -9,13 +9,6 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                include: path.resolve(__dirname, 'src'),
-                use: {
-                    loader: 'babel-loader'
-                }
-            },
             {
                 test: /\.tsx?$/,
                 include: path.resolve(__dirname, 'src'),

@@ -1,0 +1,1 @@
+export type { ConfigOptions } from '@seatsio/types'

@@ -1,14 +1,27 @@
 /*global seatsio*/
 
-import React from 'react'
+import * as React from 'react'
 import {didPropsChange} from './util'
+import { ConfigOptions } from './types';
 
-export default class Embeddable extends React.Component {
+// FIXME
+let seatsio: any
 
-    constructor(props) {
+export default abstract class Embeddable extends React.Component<ConfigOptions> {
+    static defaultProps = {
+        chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
+    }
+
+    private container: any
+    private rendering: any
+    private chart: any
+
+    constructor(props: ConfigOptions) {
         super(props);
         this.container = React.createRef();
     }
+
+    abstract createChart (seatsio: any, config: ConfigOptions): any
 
     async componentDidMount () {
         if(!this.rendering) {
@@ -16,7 +29,7 @@ export default class Embeddable extends React.Component {
         }
     }
 
-    async componentDidUpdate (prevProps) {
+    async componentDidUpdate (prevProps: ConfigOptions) {
         if (didPropsChange(this.props, prevProps) && this.chart) {
             this.destroyChart()
             this.createAndRenderChart()
@@ -26,14 +39,14 @@ export default class Embeddable extends React.Component {
     async createAndRenderChart () {
         const seatsio = await this.getSeatsio()
         const config = this.extractConfigFromProps()
-        config.container = this.container.current
+        config.container = this.container.current as any
         this.chart = this.createChart(seatsio, config).render()
         if (this.props.onRenderStarted) {
             this.props.onRenderStarted(this.chart)
         }
     }
 
-    extractConfigFromProps () {
+    extractConfigFromProps (): ConfigOptions {
         // noinspection JSUnusedLocalSymbols
         let { divId, container, onRenderStarted, chartJsUrl, region, ...config } = this.props
         return config
@@ -78,8 +91,4 @@ export default class Embeddable extends React.Component {
             <div ref={this.container} style={{'height': '100%', 'width': '100%'}} />
         )
     }
-}
-
-Embeddable.defaultProps = {
-    chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
 }

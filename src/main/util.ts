@@ -1,8 +1,8 @@
-export const didPropsChange = (prevProps, nextProps) => {
+export const didPropsChange = <P extends { [key: string]: any}>(prevProps: P, nextProps: P): boolean => {
     if (Object.keys(prevProps).length !== Object.keys(nextProps).length) {
         return true
     }
-    return Object.keys(nextProps).some(propName => {
+    return Object.keys(nextProps).some((propName: string) => {
         let prevValue = prevProps[propName]
         let nextValue = nextProps[propName]
         if (prevValue && nextValue) {

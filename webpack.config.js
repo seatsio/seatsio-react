@@ -15,8 +15,18 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 }
+            },
+            {
+                test: /\.tsx?$/,
+                include: path.resolve(__dirname, 'src'),
+                use: {
+                    loader: 'ts-loader'
+                }
             }
         ]
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
     },
     externals: {
         'react': 'commonjs react'

@@ -8,7 +8,7 @@
       "jsx": "react",
       "allowJs": true,
       "moduleResolution": "node",
-      "types": ["@seatsio/types"]
+      "types": ["@seatsio/seatsio-types"]
     },
     "include": [
         "./src/main",

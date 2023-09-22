@@ -4,12 +4,14 @@
       "noImplicitAny": true,
       "module": "es6",
       "target": "es5",
+      "lib": ["dom", "es2015"],
       "jsx": "react",
       "allowJs": true,
       "moduleResolution": "node",
       "declaration": true,
+      "types": ["@seatsio/types"]
     },
     "include": [
-        "./src/main"
-]
+        "./src/main",
+    ],
   }

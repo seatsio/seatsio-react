@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import {didPropsChange} from './util'
-import { ConfigOptions } from './types';
+import { ConfigOptions } from 'configOptions'
 
 // FIXME
 let seatsio: any

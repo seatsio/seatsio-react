@@ -1,4 +1,4 @@
-import { ConfigOptions } from './types'
+import { ConfigOptions } from 'configOptions'
 import Embeddable from './Embeddable'
 
 export default class SeatsioDesigner extends Embeddable {

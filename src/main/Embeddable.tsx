@@ -1,5 +1,3 @@
-/*global seatsio*/
-
 import * as React from 'react'
 import {didPropsChange} from './util'
 import { ConfigOptions } from 'configOptions'

@@ -4,14 +4,7 @@ module.exports = {
   ],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   "testMatch": [
-    "**/?(*.)+(spec|test).+(ts|tsx|cjs)"
+    "**/?(*.)+(spec|test).+(ts|tsx|js)"
   ],
-  "transform": {
-    '^.+\\.tsx?$': [
-      'ts-jest',
-      {
-        useESM: true,
-      },
-    ],
-  },
+  testEnvironment: "jsdom"
 }

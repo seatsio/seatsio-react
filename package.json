@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "yarn rimraf ./build && webpack",
-    "test": "ts-jest"
+    "test": "jest"
   },
   "author": {
     "name": "mroloux"
@@ -21,13 +21,14 @@
     "react": ">=18.0.0"
   },
   "dependencies": {
-    "@seatsio/types": "file:../seatsio-ui/ui/chartrenderer/build/types"
+    "@seatsio/types": "file:../seatsio-ui/ui/types"
   },
   "devDependencies": {
     "@babel/cli": "7.22.10",
     "@babel/core": "7.22.11",
     "@babel/preset-env": "7.22.14",
     "@babel/preset-react": "7.22.5",
+    "@babel/preset-typescript": "7.22.15",
     "@testing-library/jest-dom": "6.1.2",
     "@testing-library/react": "14.0.0",
     "@types/jest": "29.5.5",
@@ -37,7 +38,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rimraf": "5.0.1",
-    "ts-jest": "29.1.1",
     "ts-loader": "9.4.4",
     "typescript": "5.2.2",
     "webpack": "5.88.2",

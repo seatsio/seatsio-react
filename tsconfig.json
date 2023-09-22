@@ -8,7 +8,6 @@
       "jsx": "react",
       "allowJs": true,
       "moduleResolution": "node",
-      "declaration": true,
       "types": ["@seatsio/types"]
     },
     "include": [

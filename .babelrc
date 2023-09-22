@@ -6,6 +6,7 @@
         "exclude": ["transform-regenerator"]
       }
     ],
-    "@babel/preset-react"
+    "@babel/preset-react",
+    "@babel/preset-typescript"
   ]
 }

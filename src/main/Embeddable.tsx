@@ -3,18 +3,16 @@
 import * as React from 'react'
 import {didPropsChange} from './util'
 import { ConfigOptions } from 'configOptions'
-
-// FIXME
-let seatsio: any
+import SeatsioSeatingChart from './SeatsioSeatingChart'
 
 export default abstract class Embeddable extends React.Component<ConfigOptions> {
     static defaultProps = {
         chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
     }
 
-    private container: any
-    private rendering: any
-    private chart: any
+    private container: React.RefObject<HTMLDivElement>
+    private rendering?: Promise<void>
+    private chart: SeatsioSeatingChart
 
     constructor(props: ConfigOptions) {
         super(props);
@@ -58,7 +56,7 @@ export default abstract class Embeddable extends React.Component<ConfigOptions> 
 
     destroyChart () {
         if (this.chart && this.chart.state !== 'DESTROYED') {
-            this.chart.destroy()
+            (this.chart as any).destroy()
         }
     }
 
@@ -88,7 +86,7 @@ export default abstract class Embeddable extends React.Component<ConfigOptions> 
 
     render () {
         return (
-            <div ref={this.container} style={{'height': '100%', 'width': '100%'}} />
+            <div ref={this.container as unknown as React.RefObject<HTMLDivElement>} style={{'height': '100%', 'width': '100%'}} />
         )
     }
 }

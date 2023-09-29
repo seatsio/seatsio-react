@@ -1,9 +1,14 @@
 import * as React from 'react'
 import {didPropsChange} from './util'
-import { ConfigOptions } from 'configOptions'
 import SeatsioSeatingChart from './SeatsioSeatingChart'
+import { CommonConfigOptions } from '@seatsio/seatsio-types'
 
-export default abstract class Embeddable extends React.Component<ConfigOptions> {
+export type EmbeddableProps<T> = {
+    onRenderStarted?: (chart: any) => void
+    chartJsUrl?: string
+} & T
+
+export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
     static defaultProps = {
         chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
     }
@@ -12,12 +17,12 @@ export default abstract class Embeddable extends React.Component<ConfigOptions> 
     private rendering?: Promise<void>
     private chart: SeatsioSeatingChart
 
-    constructor(props: ConfigOptions) {
+    constructor(props: any) {
         super(props);
         this.container = React.createRef();
     }
 
-    abstract createChart (seatsio: any, config: ConfigOptions): any
+    abstract createChart (seatsio: any, config: T): any
 
     async componentDidMount () {
         if(!this.rendering) {
@@ -25,7 +30,7 @@ export default abstract class Embeddable extends React.Component<ConfigOptions> 
         }
     }
 
-    async componentDidUpdate (prevProps: ConfigOptions) {
+    async componentDidUpdate (prevProps: any) {
         if (didPropsChange(this.props, prevProps) && this.chart) {
             this.destroyChart()
             this.createAndRenderChart()
@@ -42,7 +47,7 @@ export default abstract class Embeddable extends React.Component<ConfigOptions> 
         }
     }
 
-    extractConfigFromProps (): ConfigOptions {
+    extractConfigFromProps (): any {
         // noinspection JSUnusedLocalSymbols
         let { divId, container, onRenderStarted, chartJsUrl, region, ...config } = this.props
         return config
@@ -77,7 +82,7 @@ export default abstract class Embeddable extends React.Component<ConfigOptions> 
                 resolve(seatsio)
             }
             script.onerror = () => reject(`Could not load ${script.src}`)
-            script.src = this.props.chartJsUrl.replace('{region}', this.props.region)
+            script.src = (this.props.chartJsUrl || Embeddable.defaultProps.chartJsUrl).replace('{region}', this.props.region)
             document.head.appendChild(script)
         })
     }

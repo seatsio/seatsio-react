@@ -1,8 +1,8 @@
-import { ConfigOptions } from 'configOptions'
+import { ChartRendererConfigOptions } from '@seatsio/seatsio-types'
 import Embeddable from './Embeddable'
 
-export default class SeatsioSeatingChart extends Embeddable {
-    createChart (seatsio: any, config: ConfigOptions) {
+export default class SeatsioSeatingChart extends Embeddable<ChartRendererConfigOptions> {
+    createChart (seatsio: any, config: ChartRendererConfigOptions) {
         return new seatsio.SeatingChart(config)
     }
 }

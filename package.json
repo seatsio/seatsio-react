@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "yarn rimraf ./build && webpack",
+    "generate-types": "yarn tsc -p tsconfig.types.json",
     "test": "jest"
   },
   "author": {
@@ -21,7 +22,7 @@
     "react": ">=18.0.0"
   },
   "dependencies": {
-    "@seatsio/types": "file:../seatsio-ui/ui/types"
+    "@seatsio/seatsio-types": "link:../seatsio-ui/ui/seatsio-types"
   },
   "devDependencies": {
     "@babel/cli": "7.22.10",

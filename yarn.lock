@@ -1519,9 +1519,10 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@seatsio/seatsio-types@link:../seatsio-ui/ui/seatsio-types":
-  version "0.0.0"
-  uid ""
+"@seatsio/seatsio-types@latest":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-0.1.1.tgz#8979383e7819823c756836222508dd6c008bf709"
+  integrity sha512-Y9lOgdvU75huYVyMcPGIXGmfFNWJvcC/oveKp6y+4NZvQoBMRayWSmOy9ow0dpOHILGgqB20NR36kTUIK/aMhg==
 
 "@sinclair/typebox@^0.25.16":
   version "0.25.21"

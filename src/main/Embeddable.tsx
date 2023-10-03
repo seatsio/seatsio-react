@@ -1,18 +1,16 @@
 import * as React from 'react'
 import {didPropsChange} from './util'
 import SeatsioSeatingChart from './SeatsioSeatingChart'
-import { CommonConfigOptions } from '@seatsio/seatsio-types'
+import { CommonConfigOptions, Region, SeatingChart } from '@seatsio/seatsio-types'
+
+const chartJsUrl = 'https://cdn-{region}.seatsio.net/chart.js'
 
 export type EmbeddableProps<T> = {
-    onRenderStarted?: (chart: any) => void
-    chartJsUrl?: string
+    onRenderStarted?: (chart: SeatingChart) => void
+    region: Region
 } & T
 
 export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
-    static defaultProps = {
-        chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
-    }
-
     private container: React.RefObject<HTMLDivElement>
     private rendering?: Promise<void>
     private chart: SeatsioSeatingChart
@@ -40,7 +38,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     async createAndRenderChart () {
         const seatsio = await this.getSeatsio()
         const config = this.extractConfigFromProps()
-        config.container = this.container.current as any
+        config.container = this.container.current
         this.chart = this.createChart(seatsio, config).render()
         if (this.props.onRenderStarted) {
             this.props.onRenderStarted(this.chart)
@@ -49,7 +47,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
 
     extractConfigFromProps (): any {
         // noinspection JSUnusedLocalSymbols
-        let { divId, container, onRenderStarted, chartJsUrl, region, ...config } = this.props
+        let { divId, container, onRenderStarted, region, ...config } = this.props
         return config
     }
 
@@ -82,7 +80,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
                 resolve(seatsio)
             }
             script.onerror = () => reject(`Could not load ${script.src}`)
-            script.src = (this.props.chartJsUrl || Embeddable.defaultProps.chartJsUrl).replace('{region}', this.props.region)
+            script.src = chartJsUrl.replace('{region}', this.props.region)
             document.head.appendChild(script)
         })
     }

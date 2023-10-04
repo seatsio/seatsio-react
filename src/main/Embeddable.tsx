@@ -1,7 +1,6 @@
 import * as React from 'react'
 import {didPropsChange} from './util'
-import SeatsioSeatingChart from './SeatsioSeatingChart'
-import { CommonConfigOptions, Region, SeatingChart } from '@seatsio/seatsio-types'
+import { ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio } from '@seatsio/seatsio-types'
 
 const chartJsUrl = 'https://cdn-{region}.seatsio.net/chart.js'
 
@@ -13,14 +12,14 @@ export type EmbeddableProps<T> = {
 export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
     private container: React.RefObject<HTMLDivElement>
     private rendering?: Promise<void>
-    private chart: SeatsioSeatingChart
+    private chart: SeatingChart
 
-    constructor(props: any) {
+    constructor(props: EmbeddableProps<T>) {
         super(props);
         this.container = React.createRef();
     }
 
-    abstract createChart (seatsio: any, config: T): any
+    abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
     async componentDidMount () {
         if(!this.rendering) {
@@ -28,7 +27,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
         }
     }
 
-    async componentDidUpdate (prevProps: any) {
+    async componentDidUpdate (prevProps: EmbeddableProps<T>) {
         if (didPropsChange(this.props, prevProps) && this.chart) {
             this.destroyChart()
             this.createAndRenderChart()
@@ -47,7 +46,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
 
     extractConfigFromProps (): any {
         // noinspection JSUnusedLocalSymbols
-        let { divId, container, onRenderStarted, region, ...config } = this.props
+        let { divId, onRenderStarted, region, ...config } = this.props
         return config
     }
 
@@ -56,8 +55,8 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     destroyChart () {
-        if (this.chart && this.chart.state !== 'DESTROYED') {
-            (this.chart as any).destroy()
+        if (this.chart && (this.chart as any).state !== 'DESTROYED') {
+            this.chart.destroy()
         }
     }
 

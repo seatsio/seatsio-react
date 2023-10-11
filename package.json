@@ -22,7 +22,7 @@
     "react": ">=18.0.0"
   },
   "dependencies": {
-    "@seatsio/seatsio-types": "latest"
+    "@seatsio/seatsio-types": "0.2.0"
   },
   "devDependencies": {
     "@babel/cli": "7.22.10",

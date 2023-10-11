@@ -2,10 +2,9 @@ import * as React from 'react'
 import {didPropsChange} from './util'
 import { ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio } from '@seatsio/seatsio-types'
 
-const chartJsUrl = 'https://cdn-{region}.seatsio.net/chart.js'
-
 export type EmbeddableProps<T> = {
     onRenderStarted?: (chart: SeatingChart) => void
+    chartJsUrl?: string
     region: Region
 } & T
 
@@ -13,6 +12,10 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     private container: React.RefObject<HTMLDivElement>
     private rendering?: Promise<void>
     private chart: SeatingChart
+
+    static defaultProps = {
+        chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
+    }
 
     constructor(props: EmbeddableProps<T>) {
         super(props);
@@ -46,7 +49,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
 
     extractConfigFromProps (): any {
         // noinspection JSUnusedLocalSymbols
-        let { divId, onRenderStarted, region, ...config } = this.props
+        let { chartJsUrl, divId, onRenderStarted, region, ...config } = this.props
         return config
     }
 
@@ -79,7 +82,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
                 resolve(seatsio)
             }
             script.onerror = () => reject(`Could not load ${script.src}`)
-            script.src = chartJsUrl.replace('{region}', this.props.region)
+            script.src = this.props.chartJsUrl.replace('{region}', this.props.region)
             document.head.appendChild(script)
         })
     }

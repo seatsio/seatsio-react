@@ -1510,10 +1510,10 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@seatsio/seatsio-types@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-0.2.0.tgz#ca587594092f7fa49de49b70f050c601ef1e4c87"
-  integrity sha512-Mk4bNMKGdWDluNbDrjLSz7lIZ2SMLI4wBqRhTG6J14CAX6AhSxojXs/XBU4m9XLMq+0TCCPA6vAsbpsjV0KXTQ==
+"@seatsio/seatsio-types@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-0.3.0.tgz#84c0b2aece96176de6836ba213627364e47142bd"
+  integrity sha512-CDhyrPF4qsjzPcpVIcrcGUllB3KLMXI2hYe7Dm2szAy3vbgUf6OuX9ZlxKWct30CL1vpTL78Y+O6+gUA/6vUbw==
 
 "@sinclair/typebox@^0.25.16":
   version "0.25.21"

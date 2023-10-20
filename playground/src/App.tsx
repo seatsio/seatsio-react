@@ -21,7 +21,6 @@ export const App = () => {
             </select>
             <h1>Seats.io React playground</h1>
             <div id="chart">
-                { /* @ts-ignore */ }
                 <SeatsioSeatingChart
                     workspaceKey="publicDemoKey"
                     event="smallTheatreEvent1"

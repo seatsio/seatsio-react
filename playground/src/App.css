@@ -2,6 +2,28 @@
     text-align: center;
 }
 
+.container {
+  --background-color: #f4f4f4;
+  --text-color: #121212;
+
+  height: 100vh;
+  background: var(--background-color);
+}
+
+.container.dark {
+  --background-color: #121212;
+  --text-color: rgb(244, 244, 244);
+}
+
+h1 {
+  color: var(--text-color);
+}
+
+select {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
 #chart {
     height: 600px;
 }

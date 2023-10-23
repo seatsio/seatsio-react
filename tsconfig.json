@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "outDir": "./build/",
+    "outFile": "./build/index.js",
     "noImplicitAny": true,
     "declaration": true,
-    "module": "es6",
+    "module": "amd",
     "esModuleInterop": true,
     "target": "es5",
     "lib": ["dom", "es2015"],

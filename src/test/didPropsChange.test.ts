@@ -34,7 +34,7 @@ describe('didPropsChange', () => {
         const prevProps = {
             ducks: 1
         }
-        const nextProps = {
+        const nextProps: any = {
             pineapples: 1
         }
         expect(didPropsChange(prevProps, nextProps)).toBe(true)

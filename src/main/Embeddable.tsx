@@ -1,14 +1,28 @@
-/*global seatsio*/
-
-import React from 'react'
+import * as React from 'react'
 import {didPropsChange} from './util'
+import { ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio } from '@seatsio/seatsio-types'
 
-export default class Embeddable extends React.Component {
+export type EmbeddableProps<T> = {
+    onRenderStarted?: (chart: SeatingChart) => void
+    chartJsUrl?: string
+    region: Region
+} & T
 
-    constructor(props) {
+export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
+    private container: React.RefObject<HTMLDivElement>
+    private rendering?: Promise<void>
+    private chart: SeatingChart
+
+    static defaultProps = {
+        chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
+    }
+
+    constructor(props: EmbeddableProps<T>) {
         super(props);
         this.container = React.createRef();
     }
+
+    abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
     async componentDidMount () {
         if(!this.rendering) {
@@ -16,7 +30,7 @@ export default class Embeddable extends React.Component {
         }
     }
 
-    async componentDidUpdate (prevProps) {
+    async componentDidUpdate (prevProps: EmbeddableProps<T>) {
         if (didPropsChange(this.props, prevProps) && this.chart) {
             this.destroyChart()
             this.createAndRenderChart()
@@ -33,9 +47,9 @@ export default class Embeddable extends React.Component {
         }
     }
 
-    extractConfigFromProps () {
+    extractConfigFromProps (): any {
         // noinspection JSUnusedLocalSymbols
-        let { divId, container, onRenderStarted, chartJsUrl, region, ...config } = this.props
+        let { chartJsUrl, divId, onRenderStarted, region, ...config } = this.props
         return config
     }
 
@@ -44,7 +58,7 @@ export default class Embeddable extends React.Component {
     }
 
     destroyChart () {
-        if (this.chart && this.chart.state !== 'DESTROYED') {
+        if (this.chart && (this.chart as any).state !== 'DESTROYED') {
             this.chart.destroy()
         }
     }
@@ -73,13 +87,9 @@ export default class Embeddable extends React.Component {
         })
     }
 
-    render () {
+    render (): React.ReactNode {
         return (
-            <div ref={this.container} style={{'height': '100%', 'width': '100%'}} />
+            <div ref={this.container as unknown as React.RefObject<HTMLDivElement>} style={{'height': '100%', 'width': '100%'}} />
         )
     }
-}
-
-Embeddable.defaultProps = {
-    chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
 }

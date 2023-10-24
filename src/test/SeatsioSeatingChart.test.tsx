@@ -3,14 +3,16 @@ import {SeatsioSeatingChart} from '../main/index'
 import Embeddable from '../main/Embeddable'
 import {render} from '@testing-library/react'
 import {removeContainer} from "./util";
+import { TestSeatingChart } from '../types';
+import { ChartRendererConfigOptions } from '@seatsio/seatsio-types';
 
 describe('SeatsioSeatingChart', () => {
 
     let seatsioMock = {
 
         SeatingChart: class {
-
-            constructor(props) {
+            public props: ChartRendererConfigOptions
+            constructor(props: ChartRendererConfigOptions) {
                 this.props = removeContainer(props)
             }
 
@@ -28,11 +30,14 @@ describe('SeatsioSeatingChart', () => {
     }
 
     it('renders the chart with default properties', () => {
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             render(
                 <SeatsioSeatingChart
-                    onRenderStarted={chart => {
+                    region="eu"
+                    workspaceKey="aWorkspaceKey"
+                    onRenderStarted={(chart: TestSeatingChart) => {
                         expect(chart.props).toEqual({
+                            workspaceKey: 'aWorkspaceKey'
                         })
                         resolve()
                     }}
@@ -42,11 +47,12 @@ describe('SeatsioSeatingChart', () => {
     })
 
     it('passes parameters onto the chart', () => {
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             render(
                 <SeatsioSeatingChart
+                    region="eu"
                     workspaceKey="aWorkspaceKey"
-                    onRenderStarted={chart => {
+                    onRenderStarted={(chart: TestSeatingChart) => {
                         expect(chart.props).toEqual({
                             workspaceKey: 'aWorkspaceKey',
                         })
@@ -58,13 +64,13 @@ describe('SeatsioSeatingChart', () => {
     })
 
     it('does not pass chartJsUrl and region onto the chart', () => {
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             render(
                 <SeatsioSeatingChart
                     workspaceKey="aworkspaceKey"
                     region="eu"
                     chartJsUrl="https://www.google.com"
-                    onRenderStarted={chart => {
+                    onRenderStarted={(chart: TestSeatingChart) => {
                         expect(chart.props).toEqual({
                             workspaceKey: 'aworkspaceKey'
                         })
@@ -79,9 +85,11 @@ describe('SeatsioSeatingChart', () => {
         let mockedDestroy = jest.fn()
         seatsioMock.SeatingChart.prototype.destroy = mockedDestroy
 
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             let chart = render(
                 <SeatsioSeatingChart
+                    region="eu"
+                    workspaceKey="aworkspaceKey"
                     onRenderStarted={() => {
                         chart.unmount()
 
@@ -97,10 +105,12 @@ describe('SeatsioSeatingChart', () => {
         let mockedDestroy = jest.fn()
         seatsioMock.SeatingChart.prototype.destroy = mockedDestroy
 
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             let chartComponent = render(
                 <SeatsioSeatingChart
-                    onRenderStarted={chart => {
+                    region="eu"
+                    workspaceKey="aworkspaceKey"
+                    onRenderStarted={(chart: TestSeatingChart) => {
                         chart.state = 'DESTROYED'
                         chartComponent.unmount()
 
@@ -113,10 +123,18 @@ describe('SeatsioSeatingChart', () => {
     })
 
     it('re-renders if props change', () => {
-        return new Promise(resolve => {
-            let {rerender} = render(<SeatsioSeatingChart/>)
+        return new Promise<void>(resolve => {
+            let {rerender} = render(
+                <SeatsioSeatingChart
+                    region="eu"
+                    workspaceKey="aworkspaceKey"
+                />
+            )
+
             rerender(
                 <SeatsioSeatingChart
+                    region="eu"
+                    workspaceKey="aworkspaceKey"
                     onRenderStarted={() => {
                         resolve()
                     }}

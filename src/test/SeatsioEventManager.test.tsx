@@ -3,14 +3,16 @@ import {SeatsioEventManager} from '../main/index'
 import Embeddable from '../main/Embeddable'
 import {removeContainer} from "./util";
 import {render} from '@testing-library/react'
+import { EventManagerConfigOptions } from '@seatsio/seatsio-types';
+import { TestSeatingChart } from '../types'
 
 describe('SeatsioEventManager', () => {
 
     let seatsioMock = {
 
         EventManager: class {
-
-            constructor(props) {
+            public props: EventManagerConfigOptions
+            constructor(props: EventManagerConfigOptions) {
                 this.props = removeContainer(props)
             }
 
@@ -28,13 +30,18 @@ describe('SeatsioEventManager', () => {
     }
 
     it('passes parameters onto the event manager', () => {
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             render(
                 <SeatsioEventManager
-                    workspaceKey="aworkspaceKey"
-                    onRenderStarted={chart => {
+                    event="eventA"
+                    mode="static"
+                    region="eu"
+                    secretKey="aSecretKey"
+                    onRenderStarted={(chart: TestSeatingChart) => {
                         expect(chart.props).toEqual({
-                            workspaceKey: 'aworkspaceKey'
+                            event: 'eventA',
+                            mode: 'static',
+                            secretKey: 'aSecretKey'
                         })
                         resolve()
                     }}/>
@@ -43,15 +50,19 @@ describe('SeatsioEventManager', () => {
     })
 
     it('does not pass chartJsUrl and region onto the event manager', () => {
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             render(
                 <SeatsioEventManager
-                    workspaceKey="aworkspaceKey"
+                    secretKey="aSecretKey"
+                    event="eventA"
+                    mode="static"
                     region="eu"
                     chartJsUrl="https://www.google.com"
-                    onRenderStarted={chart => {
+                    onRenderStarted={(chart: TestSeatingChart) => {
                         expect(chart.props).toEqual({
-                            workspaceKey: 'aworkspaceKey'
+                            event: 'eventA',
+                            mode: 'static',
+                            secretKey: 'aSecretKey'
                         })
                         resolve()
                     }}

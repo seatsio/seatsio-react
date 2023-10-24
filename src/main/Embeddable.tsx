@@ -87,7 +87,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
         })
     }
 
-    render () {
+    render (): React.ReactNode {
         return (
             <div ref={this.container as unknown as React.RefObject<HTMLDivElement>} style={{'height': '100%', 'width': '100%'}} />
         )

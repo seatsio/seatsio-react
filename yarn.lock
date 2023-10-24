@@ -2892,11 +2892,6 @@ type-fest@^0.21.3:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.21.3.tgz#d260a24b0198436e133fa26a524a6d65fa3b2e37"
   integrity sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==
 
-types-webpack-bundler@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/types-webpack-bundler/-/types-webpack-bundler-1.0.2.tgz#494ef8221ac0ba18092e9c4ec6321d56811cc9e2"
-  integrity sha512-McBxKu99h2WTyOl76SMcS5T3vKTsxBQxe5BQwrbcrFwnczQkU7ae6RKmUN/mqIYOIo4LnIowxFJY0XjPKurP/A==
-
 typescript@5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"

@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "outDir": "./build",
+      "types": ["@seatsio/seatsio-types"],
+      "jsx": "react",
+      "declaration": true,
+      "emitDeclarationOnly": true,
+      "lib": ["dom", "es2015"],
+      "skipLibCheck": true
+    },
+    "include": [
+        "./src/main",
+        "./src/types"
+    ],
+  }

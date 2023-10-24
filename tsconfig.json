@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
-    "outFile": "./build/index.js",
+    "outDir": "./build",
     "noImplicitAny": true,
     "declaration": true,
-    "module": "amd",
-    "esModuleInterop": true,
-    "target": "es5",
+    "target": "ES5",
     "lib": ["dom", "es2015"],
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "types": ["@seatsio/seatsio-types", "jest"]
   },
   "include": [

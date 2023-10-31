@@ -2,13 +2,19 @@
   "name": "@seatsio/seatsio-react",
   "version": "14.1.0",
   "main": "build/index.js",
+  "module": "build/index.mjs",
+  "types": "build/index.d.ts",
+  "exports": {
+    "import": "./build/index.mjs",
+    "default": "./build/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/seatsio/seatsio-react"
   },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "tsc",
+    "build": "tsup",
     "test": "jest"
   },
   "author": {
@@ -19,7 +25,7 @@
     "build/"
   ],
   "dependencies": {
-    "@seatsio/seatsio-types": "0.3.2"
+    "@seatsio/seatsio-types": "2.0.0"
   },
   "peerDependencies": {
     "react": ">=18.0.0"
@@ -36,6 +42,7 @@
     "react-dom": "18.2.0",
     "rimraf": "5.0.1",
     "ts-jest": "29.1.1",
+    "tsup": "7.2.0",
     "typescript": "5.2.2"
   }
 }

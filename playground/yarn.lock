@@ -1665,15 +1665,14 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.5.1.tgz#5f1b518ec5fa54437c0b7c4a821546c64fed6922"
   integrity sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==
 
-"@seatsio/seatsio-react@file:./..":
-  version "14.2.0"
-  dependencies:
-    "@seatsio/seatsio-types" "2.0.0"
+"@seatsio/seatsio-react@link:./..":
+  version "0.0.0"
+  uid ""
 
-"@seatsio/seatsio-types@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.0.0.tgz#2563d5f4483cf1d8835d78dff0110de226602afb"
-  integrity sha512-RSK9OgzbrjewkjcsmqkK4XGGhbdnv4x/UsjLI4M8c4ax+XGzxOX2vlQyD3wA///UcOgcVCvTcYJYF83Pt/123w==
+"@seatsio/seatsio-types@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.0.1.tgz#f07e1b05e3dedc6cb049213ad4de4907593c5da2"
+  integrity sha512-8yIzPhVtzHoVrOjJaNQXw0sqLkAdBzQH1WtQTCqLTPkPMlIGO/kzCoMDQ+K0kcTHq8yQLhI5/L+EoqTL255lHg==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"

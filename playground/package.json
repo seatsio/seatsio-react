@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@seatsio/seatsio-react": "file:./..",
+    "@seatsio/seatsio-react": "link:./..",
     "@types/node": "20.8.10",
     "@types/react": "18.2.30",
     "@types/react-dom": "18.2.14",

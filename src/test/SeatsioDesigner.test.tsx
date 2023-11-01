@@ -8,7 +8,7 @@ import { ChartDesignerConfigOptions } from '@seatsio/seatsio-types'
 
 describe('SeatsioDesigner', () => {
 
-    let seatsioMock = {
+    let seatsioMock: any = {
         SeatingChartDesigner: class {
             public props: ChartDesignerConfigOptions
 

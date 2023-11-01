@@ -63,10 +63,10 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
         }
     }
 
-    getSeatsio () {
+    getSeatsio (): Promise<Seatsio> {
         if (typeof seatsio === 'undefined') {
             return this.loadSeatsio()
-        } else if (seatsio.region !== this.props.region) {
+        } else if ((seatsio as any).region !== this.props.region) {
             seatsio = undefined
             return this.loadSeatsio()
         } else {
@@ -74,11 +74,11 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
         }
     }
 
-    loadSeatsio () {
+    loadSeatsio (): Promise<Seatsio> {
         return new Promise((resolve, reject) => {
             let script = document.createElement('script')
             script.onload = () => {
-                seatsio.region = this.props.region
+                (seatsio as any).region = this.props.region
                 resolve(seatsio)
             }
             script.onerror = () => reject(`Could not load ${script.src}`)

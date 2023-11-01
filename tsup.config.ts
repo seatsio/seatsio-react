@@ -7,5 +7,5 @@ export default defineConfig({
   target: "es2019",
   sourcemap: true,
   dts: true,
-  minify: true,
+  splitting: false,
 });

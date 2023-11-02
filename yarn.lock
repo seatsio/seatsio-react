@@ -697,10 +697,10 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@seatsio/seatsio-types@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.0.0.tgz#2563d5f4483cf1d8835d78dff0110de226602afb"
-  integrity sha512-RSK9OgzbrjewkjcsmqkK4XGGhbdnv4x/UsjLI4M8c4ax+XGzxOX2vlQyD3wA///UcOgcVCvTcYJYF83Pt/123w==
+"@seatsio/seatsio-types@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.0.1.tgz#f07e1b05e3dedc6cb049213ad4de4907593c5da2"
+  integrity sha512-8yIzPhVtzHoVrOjJaNQXw0sqLkAdBzQH1WtQTCqLTPkPMlIGO/kzCoMDQ+K0kcTHq8yQLhI5/L+EoqTL255lHg==
 
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"

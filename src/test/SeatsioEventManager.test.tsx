@@ -8,7 +8,7 @@ import { TestSeatingChart } from '../types'
 
 describe('SeatsioEventManager', () => {
 
-    let seatsioMock = {
+    let seatsioMock: any = {
 
         EventManager: class {
             public props: EventManagerConfigOptions

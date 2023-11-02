@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@seatsio/seatsio-react": "file:./..",
+    "@seatsio/seatsio-react": "link:./..",
     "@types/node": "20.8.10",
     "@types/react": "18.2.30",
     "@types/react-dom": "18.2.14",
@@ -33,5 +33,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11"
   }
 }

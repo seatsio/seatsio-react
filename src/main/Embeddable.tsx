@@ -10,8 +10,10 @@ export type EmbeddableProps<T> = {
 
 export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
     private container: React.RefObject<HTMLDivElement>
-    private rendering?: Promise<void>
+    private seatsio: Promise<Seatsio>
     private chart: SeatingChart
+
+    private static seatsioBundles: { [key in Region]?: Seatsio } = {}
 
     static defaultProps = {
         chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
@@ -19,26 +21,26 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
 
     constructor(props: EmbeddableProps<T>) {
         super(props);
-        this.container = React.createRef();
+        this.container = React.createRef()
     }
 
     abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
-    async componentDidMount () {
-        if(!this.rendering) {
-            this.rendering = this.createAndRenderChart()
-        }
+    componentDidMount () {
+        console.log('Mounted')
+        this.createAndRenderChart()
     }
 
-    async componentDidUpdate (prevProps: EmbeddableProps<T>) {
+    componentDidUpdate (prevProps: EmbeddableProps<T>) {
         if (didPropsChange(this.props, prevProps) && this.chart) {
+            console.log('Props changed')
             this.destroyChart()
             this.createAndRenderChart()
         }
     }
 
     async createAndRenderChart () {
-        const seatsio = await this.getSeatsio()
+        const seatsio = await this.loadSeatsio()
         const config = this.extractConfigFromProps()
         config.container = this.container.current
         this.chart = this.createChart(seatsio, config).render()
@@ -48,7 +50,6 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     extractConfigFromProps (): any {
-        // noinspection JSUnusedLocalSymbols
         let { chartJsUrl, divId, onRenderStarted, region, ...config } = this.props
         return config
     }
@@ -63,33 +64,25 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
         }
     }
 
-    getSeatsio (): Promise<Seatsio> {
-        if (typeof seatsio === 'undefined') {
-            return this.loadSeatsio()
-        } else if ((seatsio as any).region !== this.props.region) {
-            seatsio = undefined
-            return this.loadSeatsio()
-        } else {
-            return Promise.resolve(seatsio)
-        }
-    }
-
     loadSeatsio (): Promise<Seatsio> {
-        return new Promise((resolve, reject) => {
-            let script = document.createElement('script')
-            script.onload = () => {
-                (seatsio as any).region = this.props.region
-                resolve(seatsio)
-            }
-            script.onerror = () => reject(`Could not load ${script.src}`)
-            script.src = this.props.chartJsUrl.replace('{region}', this.props.region)
-            document.head.appendChild(script)
-        })
+        if (!this.seatsio || (this.seatsio as any).region !== this.props.region) {
+            console.log('Starting seatsio load')
+            this.seatsio = new Promise((resolve, reject) => {
+                const script = document.head.appendChild(document.createElement('script'))
+                script.onload = () => {
+                    (seatsio as any).region = this.props.region
+                    resolve(seatsio)
+                    console.log('Promise resolved')
+                }
+                script.onerror = () => reject(`Could not load ${script.src}`)
+                script.src = this.props.chartJsUrl.replace('{region}', this.props.region)
+            })
+        }
+
+        return this.seatsio
     }
 
     render (): React.ReactNode {
-        return (
-            <div ref={this.container as unknown as React.RefObject<HTMLDivElement>} style={{'height': '100%', 'width': '100%'}} />
-        )
+        return <div ref={this.container as unknown as React.RefObject<HTMLDivElement>} style={{'height': '100%', 'width': '100%'}} />
     }
 }

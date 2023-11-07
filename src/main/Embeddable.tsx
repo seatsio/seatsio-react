@@ -10,10 +10,9 @@ export type EmbeddableProps<T> = {
 
 export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
     private container: React.RefObject<HTMLDivElement>
-    private seatsio: Promise<Seatsio>
     private chart: SeatingChart
 
-    private static seatsioBundles: { [key in Region]?: Seatsio } = {}
+    private static seatsioBundles: { [key in Region]?: Promise<Seatsio> } = {}
 
     static defaultProps = {
         chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
@@ -27,20 +26,19 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
     componentDidMount () {
-        console.log('Mounted')
-        this.createAndRenderChart()
+        !Embeddable.seatsioBundles[this.props.region] && this.createAndRenderChart()
     }
 
     componentDidUpdate (prevProps: EmbeddableProps<T>) {
         if (didPropsChange(this.props, prevProps) && this.chart) {
-            console.log('Props changed')
             this.destroyChart()
             this.createAndRenderChart()
         }
     }
 
     async createAndRenderChart () {
-        const seatsio = await this.loadSeatsio()
+        window.seatsio = await this.loadSeatsio();
+        (seatsio as any).region = this.props.region
         const config = this.extractConfigFromProps()
         config.container = this.container.current
         this.chart = this.createChart(seatsio, config).render()
@@ -65,21 +63,19 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     loadSeatsio (): Promise<Seatsio> {
-        if (!this.seatsio || (this.seatsio as any).region !== this.props.region) {
-            console.log('Starting seatsio load')
-            this.seatsio = new Promise((resolve, reject) => {
+        const { region } = this.props
+        if (!Embeddable.seatsioBundles[region]) {
+            Embeddable.seatsioBundles[region] = new Promise<Seatsio>((resolve, reject) => {
                 const script = document.head.appendChild(document.createElement('script'))
                 script.onload = () => {
-                    (seatsio as any).region = this.props.region
                     resolve(seatsio)
-                    console.log('Promise resolved')
                 }
                 script.onerror = () => reject(`Could not load ${script.src}`)
-                script.src = this.props.chartJsUrl.replace('{region}', this.props.region)
+                script.src = this.props.chartJsUrl.replace('{region}', region)
             })
         }
 
-        return this.seatsio
+        return Embeddable.seatsioBundles[region]
     }
 
     render (): React.ReactNode {

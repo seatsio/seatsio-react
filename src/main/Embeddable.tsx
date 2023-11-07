@@ -2,8 +2,8 @@ import * as React from 'react'
 import {didPropsChange} from './util'
 import { ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio } from '@seatsio/seatsio-types'
 
-export type EmbeddableProps<T> = {
-    onRenderStarted?: (chart: SeatingChart) => void
+export type EmbeddableProps<T > = {
+    onRenderStarted?: (chart: SeatingChart | EventManager) => void
     chartJsUrl?: string
     region: Region
 } & T

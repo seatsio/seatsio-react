@@ -21,8 +21,8 @@ export const App = () => {
                 <option>1</option>
             </select>
             <select onChange={e => setShown(e.target.value === 'true')} value={shown + ''}>
-                <option value="true">true</option>
-                <option value="false">false</option>
+                <option value="true">visible</option>
+                <option value="false">hidden</option>
             </select>
             <h1>Seats.io React playground</h1>
             <div id="chart">

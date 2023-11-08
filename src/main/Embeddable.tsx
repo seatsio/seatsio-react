@@ -41,8 +41,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     async createAndRenderChart () {
-        const seatsio = await this.loadSeatsio();
-        (seatsio as any).region = this.props.region
+        const seatsio = await this.loadSeatsio()
         const config = this.extractConfigFromProps()
         config.container = this.container.current
         this.chart = this.createChart(seatsio, config).render()
@@ -71,6 +70,8 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
         if (!Embeddable.seatsioBundles[chartUrl]) {
             Embeddable.seatsioBundles[chartUrl] = new Promise<Seatsio>((resolve, reject) => {
                 const script = document.head.appendChild(document.createElement('script'))
+                // Seatsio global is not replaced if already present, which would cause the wrong region bundle to resolve when changing region
+                window.seatsio = undefined
                 script.onload = () => {
                     resolve(seatsio)
                 }

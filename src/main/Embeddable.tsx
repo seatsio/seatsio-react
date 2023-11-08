@@ -37,7 +37,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     async createAndRenderChart () {
-        window.seatsio = await this.loadSeatsio();
+        const seatsio = await this.loadSeatsio();
         (seatsio as any).region = this.props.region
         const config = this.extractConfigFromProps()
         config.container = this.container.current

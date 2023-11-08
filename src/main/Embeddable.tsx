@@ -11,6 +11,7 @@ export type EmbeddableProps<T > = {
 export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
     private container: React.RefObject<HTMLDivElement>
     private chart: SeatingChart
+    private firstRender: boolean
 
     private static seatsioBundles: { [key: string]: Promise<Seatsio> } = {}
 
@@ -21,12 +22,16 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     constructor(props: EmbeddableProps<T>) {
         super(props);
         this.container = React.createRef()
+        this.firstRender = true
     }
 
     abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
     componentDidMount () {
-        !Embeddable.seatsioBundles[this.getChartUrl()] && this.createAndRenderChart()
+        if (!Embeddable.seatsioBundles[this.getChartUrl()] || this.firstRender) {
+            this.createAndRenderChart()
+            this.firstRender = false
+        }
     }
 
     componentDidUpdate (prevProps: EmbeddableProps<T>) {

@@ -1679,10 +1679,10 @@
   version "0.0.0"
   uid ""
 
-"@seatsio/seatsio-types@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.0.1.tgz#f07e1b05e3dedc6cb049213ad4de4907593c5da2"
-  integrity sha512-8yIzPhVtzHoVrOjJaNQXw0sqLkAdBzQH1WtQTCqLTPkPMlIGO/kzCoMDQ+K0kcTHq8yQLhI5/L+EoqTL255lHg==
+"@seatsio/seatsio-types@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.0.2.tgz#a37ac348ce7dbf69e894db5911562aa8b5c0e9fc"
+  integrity sha512-I5LvC6YMYjpxYEwXnhjS7Ywom7vudyjrTivhBI+08SD/rrSFXb9Vm7TeHlx2gaRSKOzxE9YzbVafEhtNZdz9Rw==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"

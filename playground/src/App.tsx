@@ -7,6 +7,7 @@ type ColorScheme = 'light' | 'dark'
 export const App = () => {
   const [unusedState, setUnusedState] = useState(0)
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
+  const [shown, setShown] = useState(true)
 
   return (
     <div className={['container', colorScheme].join(' ')}>
@@ -19,8 +20,13 @@ export const App = () => {
                 <option>0</option>
                 <option>1</option>
             </select>
+            <select onChange={e => setShown(e.target.value === 'true')} value={shown + ''}>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
             <h1>Seats.io React playground</h1>
             <div id="chart">
+                {shown &&
                 <SeatsioSeatingChart
                     workspaceKey="publicDemoKey"
                     event="smallTheatreEvent1"
@@ -28,6 +34,7 @@ export const App = () => {
                     region="eu"
                     chartJsUrl="https://cdn-staging-{region}.seatsio.net/chart.js"
                 />
+                }
             </div>
         </div>
     </div>

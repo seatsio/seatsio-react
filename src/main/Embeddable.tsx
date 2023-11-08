@@ -12,7 +12,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     private container: React.RefObject<HTMLDivElement>
     private chart: SeatingChart
 
-    private static seatsioBundles: { [key in Region]?: Promise<Seatsio> } = {}
+    private static seatsioBundles: { [key: string]: Promise<Seatsio> } = {}
 
     static defaultProps = {
         chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
@@ -26,7 +26,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
     componentDidMount () {
-        !Embeddable.seatsioBundles[this.props.region] && this.createAndRenderChart()
+        !Embeddable.seatsioBundles[this.getChartUrl()] && this.createAndRenderChart()
     }
 
     componentDidUpdate (prevProps: EmbeddableProps<T>) {
@@ -34,6 +34,10 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
             this.destroyChart()
             this.createAndRenderChart()
         }
+    }
+
+    getChartUrl () {
+        return this.props.chartJsUrl.replace('{region}', this.props.region)
     }
 
     async createAndRenderChart () {
@@ -63,19 +67,19 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     loadSeatsio (): Promise<Seatsio> {
-        const { region } = this.props
-        if (!Embeddable.seatsioBundles[region]) {
-            Embeddable.seatsioBundles[region] = new Promise<Seatsio>((resolve, reject) => {
+        const chartUrl = this.getChartUrl()
+        if (!Embeddable.seatsioBundles[chartUrl]) {
+            Embeddable.seatsioBundles[chartUrl] = new Promise<Seatsio>((resolve, reject) => {
                 const script = document.head.appendChild(document.createElement('script'))
                 script.onload = () => {
                     resolve(seatsio)
                 }
                 script.onerror = () => reject(`Could not load ${script.src}`)
-                script.src = this.props.chartJsUrl.replace('{region}', region)
+                script.src = chartUrl
             })
         }
 
-        return Embeddable.seatsioBundles[region]
+        return Embeddable.seatsioBundles[chartUrl]
     }
 
     render (): React.ReactNode {

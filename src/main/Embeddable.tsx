@@ -2,16 +2,18 @@ import * as React from 'react'
 import {didPropsChange} from './util'
 import { ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio } from '@seatsio/seatsio-types'
 
-export type EmbeddableProps<T> = {
-    onRenderStarted?: (chart: SeatingChart) => void
+export type EmbeddableProps<T > = {
+    onRenderStarted?: (chart: SeatingChart | EventManager) => void
     chartJsUrl?: string
     region: Region
 } & T
 
 export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
     private container: React.RefObject<HTMLDivElement>
-    private rendering?: Promise<void>
     private chart: SeatingChart
+    private firstRender: boolean
+
+    private static seatsioBundles: { [key: string]: Promise<Seatsio> } = {}
 
     static defaultProps = {
         chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
@@ -19,26 +21,32 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
 
     constructor(props: EmbeddableProps<T>) {
         super(props);
-        this.container = React.createRef();
+        this.container = React.createRef()
+        this.firstRender = true
     }
 
     abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
-    async componentDidMount () {
-        if(!this.rendering) {
-            this.rendering = this.createAndRenderChart()
+    componentDidMount () {
+        if (!Embeddable.seatsioBundles[this.getChartUrl()] || this.firstRender) {
+            this.createAndRenderChart()
+            this.firstRender = false
         }
     }
 
-    async componentDidUpdate (prevProps: EmbeddableProps<T>) {
+    componentDidUpdate (prevProps: EmbeddableProps<T>) {
         if (didPropsChange(this.props, prevProps) && this.chart) {
             this.destroyChart()
             this.createAndRenderChart()
         }
     }
 
+    getChartUrl () {
+        return this.props.chartJsUrl.replace('{region}', this.props.region)
+    }
+
     async createAndRenderChart () {
-        const seatsio = await this.getSeatsio()
+        const seatsio = await this.loadSeatsio()
         const config = this.extractConfigFromProps()
         config.container = this.container.current
         this.chart = this.createChart(seatsio, config).render()
@@ -48,7 +56,6 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     extractConfigFromProps (): any {
-        // noinspection JSUnusedLocalSymbols
         let { chartJsUrl, divId, onRenderStarted, region, ...config } = this.props
         return config
     }
@@ -63,28 +70,22 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
         }
     }
 
-    getSeatsio (): Promise<Seatsio> {
-        if (typeof seatsio === 'undefined') {
-            return this.loadSeatsio()
-        } else if ((seatsio as any).region !== this.props.region) {
-            seatsio = undefined
-            return this.loadSeatsio()
-        } else {
-            return Promise.resolve(seatsio)
-        }
-    }
-
     loadSeatsio (): Promise<Seatsio> {
-        return new Promise((resolve, reject) => {
-            let script = document.createElement('script')
-            script.onload = () => {
-                (seatsio as any).region = this.props.region
-                resolve(seatsio)
-            }
-            script.onerror = () => reject(`Could not load ${script.src}`)
-            script.src = this.props.chartJsUrl.replace('{region}', this.props.region)
-            document.head.appendChild(script)
-        })
+        const chartUrl = this.getChartUrl()
+        if (!Embeddable.seatsioBundles[chartUrl]) {
+            Embeddable.seatsioBundles[chartUrl] = new Promise<Seatsio>((resolve, reject) => {
+                const script = document.head.appendChild(document.createElement('script'))
+                // Seatsio global is not replaced if already present, which would cause the wrong region bundle to resolve when changing region
+                window.seatsio = undefined
+                script.onload = () => {
+                    resolve(seatsio)
+                }
+                script.onerror = () => reject(`Could not load ${script.src}`)
+                script.src = chartUrl
+            })
+        }
+
+        return Embeddable.seatsioBundles[chartUrl]
     }
 
     render (): React.ReactNode {

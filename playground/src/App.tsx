@@ -1,4 +1,5 @@
 import { SeatsioSeatingChart } from '@seatsio/seatsio-react';
+import { Region } from '@seatsio/seatsio-types';
 import React, { useState } from 'react';
 import './App.css';
 
@@ -8,6 +9,7 @@ export const App = () => {
   const [unusedState, setUnusedState] = useState(0)
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
   const [shown, setShown] = useState(true)
+  const region: Region = 'eu'
 
   return (
     <div className={['container', colorScheme].join(' ')}>
@@ -31,7 +33,7 @@ export const App = () => {
                     workspaceKey="publicDemoKey"
                     event="smallTheatreEvent1"
                     colorScheme={colorScheme}
-                    region="eu"
+                    region={region}
                     chartJsUrl="https://cdn-staging-{region}.seatsio.net/chart.js"
                 />
                 }

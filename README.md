@@ -30,6 +30,26 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react';
 
 The chart uses 100% of the width and height of the DOM element (e.g. a div) in which you render it. Play with the size of that element to change the chart size.
 
+### TypeScript
+
+The `@seatsio/seatsio-types` package (which comes installed with `@seatsio/seatsio-react`) provides type definitions for the properties of the `SeatsioSeatingChart`:
+
+```jsx
+import { Pricing } from "@seatsio/seatsio-types";
+
+const pricing: Pricing = [
+    { category: '1', price: 30},
+    { category: '2', price: 40}
+]
+
+<SeatsioSeatingChart
+    workspaceKey="<yourPublicWorkspaceKey>"
+    event="<yourEventKey>"
+    pricing={pricing}
+    region="eu"
+/>
+```
+
 ### onRenderStarted()
 
 `onRenderStarted` is fired when the chart has started loading, but hasn't rendered yet:

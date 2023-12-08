@@ -13,7 +13,7 @@ describe('SeatsioEventManager', () => {
         EventManager: class {
             public props: EventManagerConfigOptions
             constructor(props: EventManagerConfigOptions) {
-                this.props = removeContainer(props)
+                this.props = removeContainer(props) as EventManagerConfigOptions
             }
 
             render() {

@@ -1,5 +1,4 @@
-import { SeatsioSeatingChart } from '@seatsio/seatsio-react';
-import { Region } from '@seatsio/seatsio-types';
+import { SeatsioSeatingChart, Region } from '@seatsio/seatsio-react';
 import React, { useState } from 'react';
 import './App.css';
 

@@ -32,10 +32,10 @@ The chart uses 100% of the width and height of the DOM element (e.g. a div) in w
 
 ### TypeScript
 
-The `@seatsio/seatsio-types` package (which comes installed with `@seatsio/seatsio-react`) provides type definitions for the properties of the `SeatsioSeatingChart`:
+`@seatsio/seatsio-react` exposes type definitions from `@seatsio/seatsio-types`. You can import them as follows:
 
 ```jsx
-import { Pricing } from "@seatsio/seatsio-types";
+import { SeatsioSeatingChart, Pricing } from "@seatsio/seatsio-react";
 
 const pricing: Pricing = [
     { category: '1', price: 30},

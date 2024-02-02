@@ -1678,12 +1678,12 @@
 "@seatsio/seatsio-react@link:./..":
   version "14.9.0"
   dependencies:
-    "@seatsio/seatsio-types" "2.4.2"
+    "@seatsio/seatsio-types" "2.5.0"
 
-"@seatsio/seatsio-types@2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.4.2.tgz#097d9a87e2ca6ec5502d2ffd6c0688e79438256a"
-  integrity sha512-RETbLFdJ1Fch7XnFRhCrqooi7Xzkg6wQ6UIL7Mj75mmOzrROLcLt0dU3lFjJM/3h++8iN7BMCmAFJQVu/QADDw==
+"@seatsio/seatsio-types@2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.5.0.tgz#2f30030e046d9100e4e70d0b2ab54f0994277cfe"
+  integrity sha512-yTralQ0coc+sDlwDtAubKWqaMfIXjwjRsQyt/1wZP4bSnn6sxDASzfbzIJMdranMW057wfLYmSPbRp4eneo6xA==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -1999,10 +1999,10 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-1.3.4.tgz#a4ed836e069491414bab92c31fdea9e557aca0d9"
   integrity sha512-1Gjee59G25MrQGk8bsNvC6fxNiRgUlGn2wlhGf95a59DrprnnHk80FIMMFG9XHMdrfsuA119ht06QPDXA1Z7tw==
 
-"@types/node@*", "@types/node@20.11.14":
-  version "20.11.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.14.tgz#9fdc9c2550c2f6693508ca4530f821474c4ee3bb"
-  integrity sha512-w3yWCcwULefjP9DmDDsgUskrMoOy5Z8MiwKHr1FvqGPtx7CvJzQvxD7eKpxNtklQxLruxSXWddyeRtyud0RcXQ==
+"@types/node@*", "@types/node@20.11.16":
+  version "20.11.16"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.16.tgz#4411f79411514eb8e2926f036c86c9f0e4ec6708"
+  integrity sha512-gKb0enTmRCzXSSUJDq6/sPcqrfCv2mkkG6Jt/clpn5eiCbKTY+SgZUxo+p8ZKMof5dCp9vHQUAB7wOUTod22wQ==
   dependencies:
     undici-types "~5.26.4"
 

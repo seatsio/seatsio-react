@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@seatsio/seatsio-react": "link:./..",
-    "@types/node": "20.11.14",
+    "@types/node": "20.11.16",
     "@types/react": "18.2.30",
     "@types/react-dom": "18.2.14",
     "react": "18.2.0",

@@ -767,10 +767,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.9.2.tgz#830f3a3fba67f6216a5884368431918029045afe"
   integrity sha512-SYRedJi+mweatroB+6TTnJYLts0L0bosg531xnQWtklOI6dezEagx4Q0qDyvRdK+qgdA3YZpjjGuPFtxBmddBA==
 
-"@seatsio/seatsio-types@2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.7.0.tgz#037962960876f9b177458b6dfae336e5945811af"
-  integrity sha512-TXZMVyJ4iCgbM4kz9pNnRad/Uwtzu3ncA1V5PVpeStNphlAtubS3E89l8t4RhnBJoAauX95oblNuU45CiVo85g==
+"@seatsio/seatsio-types@2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-2.8.0.tgz#e1ffd3658bf01e7b52a01607d5676400d66a7cba"
+  integrity sha512-DQtgqVoM9f+FeINNlrqopJZT3ExdX/3R3IbDMszWWWV7qhmdc6dDnc+PNybZVR4DaYh0VPnaLsn5wNaeyusW5Q==
 
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
@@ -819,10 +819,10 @@
     lodash "^4.17.15"
     redent "^3.0.0"
 
-"@testing-library/react@14.2.1":
-  version "14.2.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-14.2.1.tgz#bf69aa3f71c36133349976a4a2da3687561d8310"
-  integrity sha512-sGdjws32ai5TLerhvzThYFbpnF9XtL65Cjf+gB0Dhr29BGqK+mAeN7SURSdu+eqgET4ANcWoC7FQpkaiGvBr+A==
+"@testing-library/react@14.2.2":
+  version "14.2.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-14.2.2.tgz#74f855215c57d423282486a395a4348a837d3c5a"
+  integrity sha512-SOUuM2ysCvjUWBXTNfQ/ztmnKDmqaiPV3SvoIuyxMUca45rbSWWAT/qB8CUs/JQ/ux/8JFs9DNdFQ3f6jH3crA==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^9.0.0"

@@ -1,4 +1,4 @@
-import { BoothProps, GeneralAdmissionAreaProps, InteractiveObjectProps, InteractiveSectionProps, SeatProps, SelectableObjectProps, TableProps } from "@seatsio/seatsio-types"
+import {Booth, GeneralAdmissionArea, InteractiveSection, Seat, SelectableObject, Table} from "@seatsio/seatsio-types"
 
 export const didPropsChange = <P extends { [key: string]: any}>(prevProps: P, nextProps: P): boolean => {
     if (Object.keys(prevProps).length !== Object.keys(nextProps).length) {
@@ -19,8 +19,8 @@ export const didPropsChange = <P extends { [key: string]: any}>(prevProps: P, ne
     })
 }
 
-export const isSeat = (obj: SelectableObjectProps): obj is SeatProps => obj.objectType === 'Seat'
-export const isTable = (obj: SelectableObjectProps): obj is TableProps => obj.objectType === 'Table'
-export const isSection = (obj: SelectableObjectProps): obj is InteractiveSectionProps => obj.objectType === 'section'
-export const isBooth = (obj: SelectableObjectProps): obj is BoothProps => obj.objectType === 'Booth'
-export const isGeneralAdmission = (obj: SelectableObjectProps): obj is GeneralAdmissionAreaProps => obj.objectType === 'GeneralAdmissionArea'
+export const isSeat = (obj: SelectableObject) => obj.objectType === 'Seat'
+export const isTable = (obj: SelectableObject): obj is Table => obj.objectType === 'Table'
+export const isSection = (obj: SelectableObject): obj is InteractiveSection => obj.objectType === 'section'
+export const isBooth = (obj: SelectableObject): obj is Booth => obj.objectType === 'Booth'
+export const isGeneralAdmission = (obj: SelectableObject): obj is GeneralAdmissionArea => obj.objectType === 'GeneralAdmissionArea'

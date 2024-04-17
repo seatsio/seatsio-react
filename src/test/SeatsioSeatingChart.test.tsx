@@ -3,8 +3,8 @@ import {SeatsioSeatingChart} from '../main/index'
 import Embeddable from '../main/Embeddable'
 import {render} from '@testing-library/react'
 import {removeContainer} from "./util";
-import { TestSeatingChart } from '../types';
-import { ChartRendererConfigOptions } from '@seatsio/seatsio-types';
+import {TestSeatingChart} from '../types';
+import {ChartRendererConfigOptions} from '@seatsio/seatsio-types';
 
 describe('SeatsioSeatingChart', () => {
 

@@ -1,10 +1,9 @@
-
 import React from 'react'
 import {SeatsioDesigner} from '../main/index'
 import Embeddable from '../main/Embeddable'
 import {removeContainer} from "./util"
 import {render} from '@testing-library/react'
-import { ChartDesignerConfigOptions } from '@seatsio/seatsio-types'
+import {ChartDesignerConfigOptions} from '@seatsio/seatsio-types'
 
 describe('SeatsioDesigner', () => {
 
@@ -13,7 +12,7 @@ describe('SeatsioDesigner', () => {
             public props: ChartDesignerConfigOptions
 
             constructor(props: ChartDesignerConfigOptions) {
-                this.props = removeContainer(props)
+                this.props = removeContainer(props) as ChartDesignerConfigOptions
             }
 
             render() {

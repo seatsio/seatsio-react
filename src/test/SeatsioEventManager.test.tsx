@@ -3,8 +3,8 @@ import {SeatsioEventManager} from '../main/index'
 import Embeddable from '../main/Embeddable'
 import {removeContainer} from "./util";
 import {render} from '@testing-library/react'
-import { EventManagerConfigOptions } from '@seatsio/seatsio-types';
-import { TestSeatingChart } from '../types'
+import {EventManagerConfigOptions} from '@seatsio/seatsio-types';
+import {TestSeatingChart} from '../types'
 
 describe('SeatsioEventManager', () => {
 

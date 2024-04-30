@@ -25,7 +25,7 @@
     "build/"
   ],
   "dependencies": {
-    "@seatsio/seatsio-types": "3.1.0"
+    "@seatsio/seatsio-types": "3.3.0"
   },
   "peerDependencies": {
     "react": ">=18.0.0"

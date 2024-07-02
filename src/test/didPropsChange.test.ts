@@ -1,4 +1,3 @@
-import React from 'react'
 import {didPropsChange} from '../main/util'
 
 describe('didPropsChange', () => {

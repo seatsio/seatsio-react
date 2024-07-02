@@ -13,7 +13,6 @@
     "url": "https://github.com/seatsio/seatsio-react"
   },
   "scripts": {
-    "prebuild": "rimraf ./build",
     "build": "tsup",
     "test": "jest"
   },
@@ -40,7 +39,6 @@
     "jest-environment-jsdom": "29.7.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "rimraf": "5.0.7",
     "ts-jest": "29.1.4",
     "tsup": "8.0.2",
     "typescript": "5.4.5"

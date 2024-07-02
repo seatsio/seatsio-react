@@ -19,7 +19,7 @@ export const didPropsChange = <P extends { [key: string]: any}>(prevProps: P, ne
     })
 }
 
-export const isSeat = (obj: SelectableObject) => obj.objectType === 'Seat'
+export const isSeat = (obj: SelectableObject): obj is Seat => obj.objectType === 'Seat'
 export const isTable = (obj: SelectableObject): obj is Table => obj.objectType === 'Table'
 export const isSection = (obj: SelectableObject): obj is InteractiveSection => obj.objectType === 'section'
 export const isBooth = (obj: SelectableObject): obj is Booth => obj.objectType === 'Booth'

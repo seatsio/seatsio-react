@@ -5,5 +5,3 @@ export type TestSeatingChart = (SeatingChart | EventManager | SeatsioDesigner) &
     props?: any,
     state?: string
 }
-
-export {}

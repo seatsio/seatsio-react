@@ -25,8 +25,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - id: install-zx
-        run: npm i -g zx
+      - run: yarn install
       - id: install-semver-tool
         run: |
           wget -O /usr/local/bin/semver https://raw.githubusercontent.com/fsaintjacques/semver-tool/master/src/semver
@@ -35,7 +34,6 @@ jobs:
         env:
           VERSION_TO_BUMP: ${{ inputs.versionToBump }}
           GH_TOKEN: ${{ github.token }}
-      - run: yarn install
       - run: yarn build
       - run: yarn publish
         env:

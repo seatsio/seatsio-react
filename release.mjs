@@ -1,5 +1,3 @@
-#!/usr/bin/env zx
-
 /*
 * Script to release the seats.io java lib.
 *   - changes the version number in README.md
@@ -10,11 +8,12 @@
 * Prerequisites:
 *   - zx installed (https://github.com/google/zx)
 *   - gh cli installed (https://cli.github.com/)
-*   - semver cli installed (https://github.com/fsaintjacques/semver-tool)
 *
 * Usage:
-*   zx ./release.mjs -v major/minor -n "release notes"
-* */
+*   yarn zx ./release.mjs -v major/minor -n "release notes"
+*
+*/
+const semver = require('semver')
 
 // don't output the commands themselves
 $.verbose = false
@@ -49,7 +48,7 @@ async function fetchLatestReleasedVersionNumber() {
 }
 
 async function determineNextVersionNumber(previous) {
-    return (await $`semver bump ${versionToBump} ${previous}`).stdout.trim()
+    return semver.inc(previous, versionToBump)
 }
 
 async function bumpVersionInFiles() {

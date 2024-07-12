@@ -26,10 +26,6 @@ jobs:
         with:
           node-version: 20
       - run: yarn install
-      - id: install-semver-tool
-        run: |
-          wget -O /usr/local/bin/semver https://raw.githubusercontent.com/fsaintjacques/semver-tool/master/src/semver
-          chmod +x /usr/local/bin/semver
       - run: yarn zx ./release.mjs -v $VERSION_TO_BUMP
         env:
           VERSION_TO_BUMP: ${{ inputs.versionToBump }}

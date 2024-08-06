@@ -41,7 +41,7 @@ jobs:
     needs: [ release ]
     if: failure()
     steps:
-      - uses: voxmedia/github-action-slack-notify-build@v1
+      - uses: voxmedia/github-action-slack-notify-build@v2
         with:
           status: FAILED
           channel: build_status

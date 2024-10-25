@@ -1684,14 +1684,14 @@
   integrity sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==
 
 "@seatsio/seatsio-react@link:./..":
-  version "14.17.0"
+  version "15.1.0"
   dependencies:
-    "@seatsio/seatsio-types" "3.6.0"
+    "@seatsio/seatsio-types" "4.1.1"
 
-"@seatsio/seatsio-types@3.6.0":
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-3.6.0.tgz#a474586b5302766dbdd1705fb19880fb2931256f"
-  integrity sha512-cT22o0AyVoDtGQMjN7xLezlNZlIpB3LejgSmehqSXpvT/DQUnTc2eROhePIztITLGpX6cDO21amzg8u9MTf9tQ==
+"@seatsio/seatsio-types@4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-4.1.1.tgz#ca62c8d5710c23a9f3be7f7f00aac9b50f643d83"
+  integrity sha512-RSjngaeQO3892xKMq7xGgDo0y2+SvBwI8QCLqqlzKvPZS/LKZcqNKx+q84VN9TPkoowKGNV0/BI8G2xu4LxM1g==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -4991,9 +4991,9 @@ http-proxy-agent@^4.0.1:
     debug "4"
 
 http-proxy-middleware@^2.0.3:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/http-proxy-middleware/-/http-proxy-middleware-2.0.6.tgz#e1a4dd6979572c7ab5a4e4b55095d1f32a74963f"
-  integrity sha512-ya/UeJ6HVBYxrgYotAZo1KvPWlgB48kUJLDePFeneHsVujFaW5WNj2NgWCAE//B1Dl02BIfYlpNgBy8Kf8Rjmw==
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/http-proxy-middleware/-/http-proxy-middleware-2.0.7.tgz#915f236d92ae98ef48278a95dedf17e991936ec6"
+  integrity sha512-fgVY8AV7qU7z/MmXJ/rxwbrtQH4jBQ9m7kp3llF0liB7glmFeVZFBepQb32T3y8n8k2+AEYuMPCpinYW+/CuRA==
   dependencies:
     "@types/http-proxy" "^1.17.8"
     http-proxy "^1.18.1"

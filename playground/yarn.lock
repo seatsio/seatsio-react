@@ -1686,12 +1686,12 @@
 "@seatsio/seatsio-react@link:./..":
   version "15.1.0"
   dependencies:
-    "@seatsio/seatsio-types" "4.1.1"
+    "@seatsio/seatsio-types" "5.1.0"
 
-"@seatsio/seatsio-types@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-4.1.1.tgz#ca62c8d5710c23a9f3be7f7f00aac9b50f643d83"
-  integrity sha512-RSjngaeQO3892xKMq7xGgDo0y2+SvBwI8QCLqqlzKvPZS/LKZcqNKx+q84VN9TPkoowKGNV0/BI8G2xu4LxM1g==
+"@seatsio/seatsio-types@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-5.1.0.tgz#87209a6d92c003d159ff020e53d133f03c5d0d93"
+  integrity sha512-LRyoKYGOMGzH2lMF//N/p+AxjXcs0lxkJrrRf+cCVWlfFDTAaa+I3sKp8pFg0ZsFPoRTats/Swd16WSFjC0tWw==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -3334,9 +3334,9 @@ cosmiconfig@^7.0.0:
     yaml "^1.10.0"
 
 cross-spawn@^7.0.2, cross-spawn@^7.0.3:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
-  integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.6.tgz#8a58fe78f00dcd70c370451759dfbfaf03e8ee9f"
+  integrity sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==
   dependencies:
     path-key "^3.1.0"
     shebang-command "^2.0.0"

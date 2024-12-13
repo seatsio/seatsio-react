@@ -1684,14 +1684,14 @@
   integrity sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==
 
 "@seatsio/seatsio-react@link:./..":
-  version "15.1.0"
+  version "15.3.0"
   dependencies:
-    "@seatsio/seatsio-types" "5.1.0"
+    "@seatsio/seatsio-types" "5.2.0"
 
-"@seatsio/seatsio-types@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-5.1.0.tgz#87209a6d92c003d159ff020e53d133f03c5d0d93"
-  integrity sha512-LRyoKYGOMGzH2lMF//N/p+AxjXcs0lxkJrrRf+cCVWlfFDTAaa+I3sKp8pFg0ZsFPoRTats/Swd16WSFjC0tWw==
+"@seatsio/seatsio-types@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-5.2.0.tgz#b9c12642e726228736336cab491a07106d9564bc"
+  integrity sha512-L6cd1PieYEea7ysl8qqLxmDzaRf0Bx2J0aIjdA8MlIS93/QbZMtep3cYBoarDIImGnkV/dPdww4mMZC/8UqD1A==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -6411,9 +6411,9 @@ mz@^2.7.0:
     thenify-all "^1.0.0"
 
 nanoid@^3.3.6:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
-  integrity sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==
+  version "3.3.8"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.8.tgz#b1be3030bee36aaff18bacb375e5cce521684baf"
+  integrity sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==
 
 natural-compare-lite@^1.4.0:
   version "1.4.0"

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {didPropsChange} from './util'
-import { ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio } from '@seatsio/seatsio-types'
+import {ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio} from '@seatsio/seatsio-types'
 
-export type EmbeddableProps<T > = {
+export type EmbeddableProps<T> = {
     onRenderStarted?: (chart: SeatingChart | EventManager) => void
     chartJsUrl?: string
     region: Region
@@ -35,6 +35,8 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     componentDidUpdate (prevProps: EmbeddableProps<T>) {
+        // @ts-ignore
+        this.chart.config = this.extractConfigFromProps()
         if (didPropsChange(this.props, prevProps) && this.chart) {
             this.destroyChart()
             this.createAndRenderChart()
@@ -48,7 +50,6 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     async createAndRenderChart () {
         const seatsio = await this.loadSeatsio()
         const config = this.extractConfigFromProps()
-        config.container = this.container.current
         this.chart = this.createChart(seatsio, config).render()
         if (this.props.onRenderStarted) {
             this.props.onRenderStarted(this.chart)
@@ -57,6 +58,8 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
 
     extractConfigFromProps (): any {
         let { chartJsUrl, divId, onRenderStarted, region, ...config } = this.props
+        // @ts-ignore
+        config.container = this.container.current
         return config
     }
 

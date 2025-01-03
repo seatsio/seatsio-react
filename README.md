@@ -50,6 +50,18 @@ const pricing: Pricing = [
 />
 ```
 
+Areas have different properties than seats or tables. To distinguish between them, you can use the `objectType` property:
+
+```jsx
+onObjectSelected: (object) => {
+    if(object.objectType === 'GeneralAdmissionArea') {
+        console.log(`I am an area with ${object.numSelected} selected places`)
+    } else {
+        console.log('I am a seat, booth or table')
+    }
+}
+```
+
 ### onRenderStarted()
 
 `onRenderStarted` is fired when the chart has started loading, but hasn't rendered yet:

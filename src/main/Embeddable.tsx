@@ -35,11 +35,13 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     componentDidUpdate (prevProps: EmbeddableProps<T>) {
-        // @ts-ignore
-        this.chart.config = this.extractConfigFromProps()
-        if (didPropsChange(this.props, prevProps) && this.chart) {
-            this.destroyChart()
-            this.createAndRenderChart()
+        if(this.chart) {
+            // @ts-ignore
+            this.chart.config = this.extractConfigFromProps()
+            if (didPropsChange(this.props, prevProps)) {
+                this.destroyChart()
+                this.createAndRenderChart()
+            }
         }
     }
 

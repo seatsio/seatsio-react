@@ -34,7 +34,7 @@ export const App = () => {
                     colorScheme={colorScheme}
                     region={region}
                     chartJsUrl="https://cdn-staging-{region}.seatsio.net/chart.js"
-                    onObjectSelected={(object) => console.log(unusedState)}
+                    onObjectSelected={(object) => console.log(colorScheme)}
                 />
                 }
             </div>

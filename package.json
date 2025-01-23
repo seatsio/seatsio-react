@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "test": "jest"
+    "test": "jest --rootDir ./src/test"
   },
   "author": {
     "name": "mroloux"

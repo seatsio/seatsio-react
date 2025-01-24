@@ -13,7 +13,6 @@
     "types": ["@seatsio/seatsio-types", "jest"]
   },
   "include": [
-      "./src/main",
-      "./src/types"
+      "./src",
   ],
 }

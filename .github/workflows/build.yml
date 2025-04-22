@@ -28,23 +28,15 @@ jobs:
     needs: [build]
     if: success() && github.ref == 'refs/heads/master'
     steps:
-      - uses: voxmedia/github-action-slack-notify-build@v2
+      - uses: seatsio/seatsio-github-actions/slack-notify-build-success@v1
         with:
-          status: SUCCESS. Please release, ${{ github.actor }}.
-          channel: build_status
-          color: good
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   notify-slack-failure:
     runs-on: ubuntu-latest
     needs: [build]
     if: failure() && github.ref == 'refs/heads/master'
     steps:
-      - uses: voxmedia/github-action-slack-notify-build@v2
+      - uses: seatsio/seatsio-github-actions/slack-notify-build-failure@v1
         with:
-          status: FAILED
-          channel: build_status
-          color: danger
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}

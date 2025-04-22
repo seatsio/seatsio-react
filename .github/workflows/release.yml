@@ -41,11 +41,7 @@ jobs:
     needs: [ release ]
     if: failure()
     steps:
-      - uses: voxmedia/github-action-slack-notify-build@v2
+      - uses: seatsio/seatsio-github-actions/slack-notify-clientlib-release-failure@v1
         with:
-          status: FAILED
-          channel: build_status
-          color: danger
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
 

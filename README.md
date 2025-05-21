@@ -23,7 +23,7 @@ import { SeatsioSeatingChart } from '@seatsio/seatsio-react';
     <SeatsioSeatingChart
         workspaceKey="<yourPublicWorkspaceKey>"
         event="<yourEventKey>"
-        region="eu"
+        region="<yourRegion>"
     />
 </div>
 ```
@@ -46,7 +46,7 @@ const pricing: Pricing = [
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
     pricing={pricing}
-    region="eu"
+    region="<yourRegion>"
 />
 ```
 
@@ -70,8 +70,8 @@ onObjectSelected: (object) => {
 <SeatsioSeatingChart
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
+    region="<yourRegion>"
     onRenderStarted={chart => { ... }}
-    region="eu"
 />
 ```
 
@@ -83,8 +83,8 @@ let chart = null;
 <SeatsioSeatingChart
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
+    region="<yourRegion>"
     onRenderStarted={createdChart => { chart = createdChart }}
-    region="eu"
 />
 
 ...
@@ -100,9 +100,31 @@ console.log(chart.selectedObjects);
 <SeatsioSeatingChart
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
+    region="<yourRegion>"
     onChartRendered={chart => { ... }}
-    region="eu"
 />
+```
+
+### Keeping track of selected objects
+
+```jsx
+const chartRef = useRef<SeatingChart | null>(null);
+const [selection, setSelection] = useState<SelectableObject[]>([]);
+
+...
+
+<SeatsioSeatingChart
+    workspaceKey="<yourPublicWorkspaceKey>"
+    event="<yourEventKey>"
+    region="<yourRegion>"
+    onChartRendered={(chart) => (chartRef.current = chart)}
+    onObjectSelected={async () => setSelection(await chartRef.current!.listSelectedObjects())}
+    onObjectDeselected={async () => setSelection(await chartRef.current!.listSelectedObjects())}
+/>
+
+...
+
+<p>{JSON.stringify(selection.map((o) => o.labels.displayedLabel))}</p>
 ```
 
 ### Supported properties
@@ -119,7 +141,7 @@ Other parameters are supported as well. For a full list, check https://docs.seat
         {'category': 3, 'price': 50}
     ]}
     priceFormatter={price => '$' + price}
-    region="eu"
+    region="<yourRegion>"
 />
 ```
 
@@ -135,7 +157,7 @@ import { SeatsioEventManager } from '@seatsio/seatsio-react';
         secretKey="<yourWorkspaceSecretKey>"
         event="<yourEventKey>"
         mode="<manageObjectStatuses or another mode>"
-        region="eu"
+        region="<yourRegion>"
     />
 </div>
 ```
@@ -152,7 +174,7 @@ import { SeatsioDesigner } from '@seatsio/seatsio-react';
 <div style={{ 'height': '500px' }}>
     <SeatsioDesigner
         secretKey="<yourWorkspaceSecretKey>"
-        region="eu"
+        region="<yourRegion>"
     />
 </div>
 ```
@@ -163,7 +185,7 @@ To be able to edit a chart from an embedded designer, you need to specify the ch
 <SeatsioDesigner
     secretKey="<yourWorkspaceSecretKey>"    
     chartKey="<yourChartKey>"
-    region="eu"
+    region="<yourRegion>"
 />
 ```
 

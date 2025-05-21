@@ -1,6 +1,7 @@
 import { SeatsioSeatingChart, Region } from '@seatsio/seatsio-react';
-import React, { useState } from 'react';
+import React, {useRef, useState} from 'react';
 import './App.css';
+import {SeatingChart, SelectableObject} from "@seatsio/seatsio-types";
 
 type ColorScheme = 'light' | 'dark'
 
@@ -8,6 +9,8 @@ export const App = () => {
   const [unusedState, setUnusedState] = useState(0)
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
   const [shown, setShown] = useState(true)
+  const chartRef = useRef<SeatingChart | null>(null);
+  const [selection, setSelection] = useState<SelectableObject[]>([]);
   const region: Region = 'eu'
 
   return (
@@ -34,10 +37,13 @@ export const App = () => {
                     colorScheme={colorScheme}
                     region={region}
                     chartJsUrl="https://cdn-staging-{region}.seatsio.net/chart.js"
-                    onObjectSelected={(object) => console.log(colorScheme)}
+                    onChartRendered={(chart) => (chartRef.current = chart)}
+                    onObjectSelected={async () => setSelection(await chartRef.current!.listSelectedObjects())}
+                    onObjectDeselected={async () => setSelection(await chartRef.current!.listSelectedObjects())}
                 />
                 }
             </div>
+            <p>{JSON.stringify(selection.map((o) => o.labels.displayedLabel))}</p>
         </div>
     </div>
   )

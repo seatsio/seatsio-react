@@ -39,10 +39,10 @@
     "jest-environment-jsdom": "29.7.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "semver": "7.7.1",
-    "ts-jest": "29.3.2",
-    "tsup": "8.4.0",
+    "semver": "7.7.2",
+    "ts-jest": "29.3.4",
+    "tsup": "8.5.0",
     "typescript": "5.8.3",
-    "zx": "8.5.3"
+    "zx": "8.5.4"
   }
 }

@@ -37,10 +37,12 @@ The chart uses 100% of the width and height of the DOM element (e.g. a div) in w
 ```jsx
 import { SeatsioSeatingChart, Pricing } from "@seatsio/seatsio-react";
 
-const pricing: Pricing = [
-    { category: '1', price: 30},
-    { category: '2', price: 40}
-]
+const pricing: Pricing = {
+    prices: [
+        { category: '1', price: 30},
+        { category: '2', price: 40}
+    ]
+}
 
 <SeatsioSeatingChart
     workspaceKey="<yourPublicWorkspaceKey>"
@@ -135,12 +137,14 @@ Other parameters are supported as well. For a full list, check https://docs.seat
 <SeatsioSeatingChart
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
-    pricing={[
-        {'category': 1, 'price': 30},
-        {'category': 2, 'price': 40},
-        {'category': 3, 'price': 50}
-    ]}
-    priceFormatter={price => '$' + price}
+    pricing={{
+        priceFormatter: (price) => '$' + price,
+        prices: [
+            {'category': 1, 'price': 30},
+            {'category': 2, 'price': 40},
+            {'category': 3, 'price': 50}
+        ]
+    }}
     region="<yourRegion>"
 />
 ```

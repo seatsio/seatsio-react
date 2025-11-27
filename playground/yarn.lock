@@ -1726,14 +1726,14 @@
   integrity sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==
 
 "@seatsio/seatsio-react@link:./..":
-  version "15.14.0"
+  version "15.17.0"
   dependencies:
-    "@seatsio/seatsio-types" "6.1.0"
+    "@seatsio/seatsio-types" "6.4.0"
 
-"@seatsio/seatsio-types@6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.1.0.tgz#f28dd0091175db13377aede2d908bffb0882de21"
-  integrity sha512-5Bi8rCMTM3o5Yo4ZSnxE4SiC4N7iGat/mII8nQ60O2FAQQS2UV7gZxgGTo8Re8DAR9a9OAxwYc6zMbXI/77bCg==
+"@seatsio/seatsio-types@6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.4.0.tgz#e6e60521ad3f75f1ccec733aee605e6a7a4ab3da"
+  integrity sha512-+2lg2M9qG7D1AjQ67jAJVPyKsgNdc0nEXf8aRsYYBE4ibhgwb9r6VACq8pslvmK7J8sQoP8Exv/QBb3s1BS5Ng==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -6573,9 +6573,9 @@ no-case@^3.0.4:
     tslib "^2.0.3"
 
 node-forge@^1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-1.3.1.tgz#be8da2af243b2417d5f646a770663a92b7e9ded3"
-  integrity sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-1.3.2.tgz#d0d2659a26eef778bf84d73e7f55c08144ee7750"
+  integrity sha512-6xKiQ+cph9KImrRh0VsjH2d8/GXA4FIMlgU4B757iI1ApvcyA9VlouP0yZJha01V+huImO+kKMU7ih+2+E14fw==
 
 node-int64@^0.4.0:
   version "0.4.0"

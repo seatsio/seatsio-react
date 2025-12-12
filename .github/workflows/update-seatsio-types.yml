@@ -1,0 +1,21 @@
+name: Update seatsio-types
+
+on:
+  repository_dispatch:
+    types: [seatsio-types-release]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: fregante/setup-git-user@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - run: yarn upgrade @seatsio/seatsio-types@${{ github.event.client_payload.version }}
+      - run: |
+          git add package.json yarn.lock
+          git commit -m "update(React): seatsio-types -> ${{ github.event.client_payload.version }}"
+          git push

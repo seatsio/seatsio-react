@@ -16,6 +16,13 @@ on:
         options:
           - minor
           - major
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -29,7 +36,7 @@ jobs:
       - run: yarn install
       - run: yarn zx ./release.mjs -v $VERSION_TO_BUMP
         env:
-          VERSION_TO_BUMP: ${{ inputs.versionToBump }}
+          VERSION_TO_BUMP: ${{ inputs.versionToBump || 'minor' }}
           GH_TOKEN: ${{ github.token }}
       - run: yarn build
       - run: yarn publish
@@ -44,4 +51,3 @@ jobs:
       - uses: seatsio/seatsio-github-actions/slack-notify-clientlib-release-failure@v1
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-

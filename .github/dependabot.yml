@@ -5,14 +5,6 @@ updates:
     schedule:
       interval: "cron"
       cronjob: "*/30 * * * *"
-    allow:
-      - dependency-name: "@seatsio/seatsio-types"
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "monthly"
-    ignore:
-      - dependency-name: "@seatsio/seatsio-types"
     groups:
       minor-and-patch-version-updates:
         update-types:

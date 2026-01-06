@@ -1,6 +1,6 @@
+import { ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio } from '@seatsio/seatsio-types'
 import * as React from 'react'
-import {didPropsChange} from './util'
-import {ChartDesigner, CommonConfigOptions, EventManager, Region, SeatingChart, Seatsio} from '@seatsio/seatsio-types'
+import { didPropsChange } from './util'
 
 export type EmbeddableProps<T> = {
     onRenderStarted?: (chart: SeatingChart | EventManager) => void
@@ -28,10 +28,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
     componentDidMount () {
-        if (!Embeddable.seatsioBundles[this.getChartUrl()] || this.firstRender) {
-            this.createAndRenderChart()
-            this.firstRender = false
-        }
+        this.createAndRenderChart()
     }
 
     componentDidUpdate (prevProps: EmbeddableProps<T>) {

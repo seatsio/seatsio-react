@@ -11,7 +11,7 @@ export type EmbeddableProps<T> = {
 export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
     private container: React.RefObject<HTMLDivElement>
     private chart: SeatingChart
-    private firstRender: boolean
+    private mountId: number = 0
 
     private static seatsioBundles: { [key: string]: Promise<Seatsio> } = {}
 
@@ -22,22 +22,28 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     constructor(props: EmbeddableProps<T>) {
         super(props);
         this.container = React.createRef()
-        this.firstRender = true
     }
 
     abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
     componentDidMount () {
-        this.createAndRenderChart()
+        this.mountId++
+        this.createAndRenderChart(this.mountId)
     }
 
     componentDidUpdate (prevProps: EmbeddableProps<T>) {
-        if(this.chart) {
+        const chartIsDestroyed = !this.chart || (this.chart as any).state === 'DESTROYED'
+
+        if (chartIsDestroyed) {
+            this.mountId++
+            this.createAndRenderChart(this.mountId)
+        } else if (this.chart) {
             // @ts-ignore
             this.chart.config = this.extractConfigFromProps()
             if (didPropsChange(this.props, prevProps)) {
                 this.destroyChart()
-                this.createAndRenderChart()
+                this.mountId++
+                this.createAndRenderChart(this.mountId)
             }
         }
     }
@@ -46,8 +52,9 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
         return this.props.chartJsUrl.replace('{region}', this.props.region)
     }
 
-    async createAndRenderChart () {
+    async createAndRenderChart (currentMountId: number) {
         const seatsio = await this.loadSeatsio()
+        if (currentMountId !== this.mountId) return
         const config = this.extractConfigFromProps()
         this.chart = this.createChart(seatsio, config).render()
         if (this.props.onRenderStarted) {
@@ -63,6 +70,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     componentWillUnmount () {
+        this.mountId++
         this.destroyChart()
     }
 

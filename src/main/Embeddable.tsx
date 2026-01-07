@@ -27,22 +27,15 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     abstract createChart (seatsio: Seatsio, config: T): SeatingChart | EventManager | ChartDesigner
 
     componentDidMount () {
-        this.mountId++
         this.createAndRenderChart(this.mountId)
     }
 
     componentDidUpdate (prevProps: EmbeddableProps<T>) {
-        const chartIsDestroyed = !this.chart || (this.chart as any).state === 'DESTROYED'
-
-        if (chartIsDestroyed) {
-            this.mountId++
-            this.createAndRenderChart(this.mountId)
-        } else if (this.chart) {
+        if(this.chart) {
             // @ts-ignore
             this.chart.config = this.extractConfigFromProps()
             if (didPropsChange(this.props, prevProps)) {
                 this.destroyChart()
-                this.mountId++
                 this.createAndRenderChart(this.mountId)
             }
         }

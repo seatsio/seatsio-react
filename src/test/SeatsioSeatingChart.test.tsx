@@ -1,10 +1,10 @@
-import React from 'react'
-import {SeatsioSeatingChart} from '../main/index'
-import Embeddable from '../main/Embeddable'
-import {render} from '@testing-library/react'
-import {removeContainer} from "./util";
-import {TestSeatingChart} from '../types';
-import {ChartRendererConfigOptions} from '@seatsio/seatsio-types';
+import { ChartRendererConfigOptions } from '@seatsio/seatsio-types';
+import { render } from '@testing-library/react';
+import React from 'react';
+import Embeddable from '../main/Embeddable';
+import { SeatsioSeatingChart } from '../main/index';
+import { TestSeatingChart } from '../types';
+import { removeContainer } from "./util";
 
 describe('SeatsioSeatingChart', () => {
 
@@ -141,5 +141,75 @@ describe('SeatsioSeatingChart', () => {
                 />
             )
         })
+    })
+
+    it('only renders one chart when mount/unmount/remount happens quickly (StrictMode)', () => {
+        let renderCount = 0
+        const originalRender = seatsioMock.SeatingChart.prototype.render
+        seatsioMock.SeatingChart.prototype.render = function() {
+            renderCount++
+            return originalRender.call(this)
+        }
+
+        return new Promise<void>((resolve, reject) => {
+            const { unmount } = render(
+                <SeatsioSeatingChart
+                    region="eu"
+                    workspaceKey="aworkspaceKey"
+                />
+            )
+
+            unmount()
+
+            render(
+                <SeatsioSeatingChart
+                    region="eu"
+                    workspaceKey="aworkspaceKey"
+                    onRenderStarted={() => {
+                        setTimeout(() => {
+                            seatsioMock.SeatingChart.prototype.render = originalRender
+                            if (renderCount > 1) {
+                                reject(new Error(`Expected 1 chart render, got ${renderCount}`))
+                            } else {
+                                resolve()
+                            }
+                        }, 0)
+                    }}
+                />
+            )
+        })
+    })
+
+    it('re-renders chart when componentDidMount is called again after componentWillUnmount (Next.js soft navigation)', async () => {
+        let renderCount = 0
+        const originalRender = seatsioMock.SeatingChart.prototype.render
+        seatsioMock.SeatingChart.prototype.render = function() {
+            renderCount++
+            return originalRender.call(this)
+        }
+
+        const instance = new SeatsioSeatingChart({
+            region: 'eu',
+            workspaceKey: 'aworkspaceKey',
+            chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
+        });
+        (instance as any).container = { current: document.createElement('div') }
+        
+        const chartUrl = (instance as any).getChartUrl();
+        (Embeddable as any).seatsioBundles[chartUrl] = Promise.resolve(seatsioMock)
+        
+        instance.componentDidMount()
+        await new Promise(resolve => setTimeout(resolve, 0))
+        expect(renderCount).toBe(1)
+
+        instance.componentWillUnmount()
+
+        instance.componentDidMount()
+        await new Promise(resolve => setTimeout(resolve, 0))
+
+        expect(renderCount).toBe(2)
+        
+        delete (Embeddable as any).seatsioBundles[chartUrl]
+        seatsioMock.SeatingChart.prototype.render = originalRender
     })
 })

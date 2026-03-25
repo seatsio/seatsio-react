@@ -1726,14 +1726,14 @@
   integrity sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==
 
 "@seatsio/seatsio-react@link:./..":
-  version "15.25.0"
+  version "15.26.0"
   dependencies:
-    "@seatsio/seatsio-types" "6.12.0"
+    "@seatsio/seatsio-types" "6.14.0"
 
-"@seatsio/seatsio-types@6.12.0":
-  version "6.12.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.12.0.tgz#56c29a069d45404d94703432980398c765cb6775"
-  integrity sha512-aNLk1nQnE9tvgtvix2c++pgtV70DHBiIdtxJcOW4NHptcdM4BwDj8i+A7A2OA3TZy3wjJpAep62XB7dML4fIfw==
+"@seatsio/seatsio-types@6.14.0":
+  version "6.14.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.14.0.tgz#1e7fcd0e7fa4d80f7bf3884715385879953c7705"
+  integrity sha512-QZilORU3tefwmSvNz5TOn8EClqjmqs9EyH+nFGXWWtcoVXP0ka/seR8Pax+0y2bDErUc18uqzz87nS+k0jEucQ==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -6960,9 +6960,9 @@ picocolors@^1.1.1:
   integrity sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==
 
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3, picomatch@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
-  integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.2.tgz#5a942915e26b372dc0f0e6753149a16e6b1c5601"
+  integrity sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==
 
 pify@^2.3.0:
   version "2.3.0"

@@ -1147,10 +1147,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.59.0.tgz#4584a8a87b29188a4c1fe987a9fcf701e256d86c"
   integrity sha512-2HRCml6OztYXyJXAvdDXPKcawukWY2GpR5/nxKp4iBgiO3wcoEGkAaqctIbZcNB6KlUQBIqt8VYkNSj2397EfA==
 
-"@seatsio/seatsio-types@6.11.0":
-  version "6.11.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.11.0.tgz#eb0d3c8d127e28d51d9972ddcc5d43bb68cf6c93"
-  integrity sha512-Td5JZajv5KAMsewJDham4uqPNPmCuejLkXnF7s9YuSx1CJgRjhlZblBDinjkDVebLRLsHD/FynULS2mfrUKGrw==
+"@seatsio/seatsio-types@6.14.0":
+  version "6.14.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.14.0.tgz#1e7fcd0e7fa4d80f7bf3884715385879953c7705"
+  integrity sha512-QZilORU3tefwmSvNz5TOn8EClqjmqs9EyH+nFGXWWtcoVXP0ka/seR8Pax+0y2bDErUc18uqzz87nS+k0jEucQ==
 
 "@sinclair/typebox@^0.34.0":
   version "0.34.37"
@@ -2130,9 +2130,9 @@ graceful-fs@^4.2.11:
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
 handlebars@^4.7.8:
-  version "4.7.8"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.8.tgz#41c42c18b1be2365439188c77c6afae71c0cd9e9"
-  integrity sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ==
+  version "4.7.9"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.9.tgz#6f139082ab58dc4e5a0e51efe7db5ae890d56a0f"
+  integrity sha512-4E71E0rpOaQuJR2A3xDZ+GM1HyWYv1clR58tC8emQNeQe3RH7MAzSbat+V0wG78LQBo6m6bzSG/L4pBuCsgnUQ==
   dependencies:
     minimist "^1.2.5"
     neo-async "^2.6.2"

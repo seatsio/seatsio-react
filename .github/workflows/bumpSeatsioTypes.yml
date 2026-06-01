@@ -37,13 +37,18 @@ jobs:
         run: |
           PKG="@seatsio/seatsio-types"
           file="package.json"
-          if jq -e --arg pkg "$PKG" '.devDependencies | has($pkg)' "$file" > /dev/null; then
+          if jq -e --arg pkg "$PKG" '.dependencies | has($pkg)' "$file" > /dev/null; then
+            jq --arg pkg "$PKG" --arg v "$VERSION" '.dependencies[$pkg] = $v' \
+              "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+            echo "Updated $PKG to $VERSION in $file:"
+            grep "$PKG" "$file"
+          elif jq -e --arg pkg "$PKG" '.devDependencies | has($pkg)' "$file" > /dev/null; then
             jq --arg pkg "$PKG" --arg v "$VERSION" '.devDependencies[$pkg] = $v' \
               "$file" > "$file.tmp" && mv "$file.tmp" "$file"
             echo "Updated $PKG to $VERSION in $file:"
             grep "$PKG" "$file"
           else
-            echo "::error::$PKG not found in devDependencies of $file"
+            echo "::error::$PKG not found in dependencies/devDependencies of $file"
             exit 1
           fi
 

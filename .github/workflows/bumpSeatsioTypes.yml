@@ -1,0 +1,67 @@
+name: Bump @seatsio/seatsio-types version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New version for @seatsio/seatsio-types'
+        required: true
+        type: string
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Validate version format
+        run: |
+          if ! [[ "${{ github.event.inputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.].+)?$ ]]; then
+            echo "::error::Invalid version '${{ github.event.inputs.version }}'. Expected something like 6.16.0"
+            exit 1
+          fi
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Update package.json files
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          PKG="@seatsio/seatsio-types"
+          file="package.json"
+          if jq -e --arg pkg "$PKG" '.devDependencies | has($pkg)' "$file" > /dev/null; then
+            jq --arg pkg "$PKG" --arg v "$VERSION" '.devDependencies[$pkg] = $v' \
+              "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+            echo "Updated $PKG to $VERSION in $file:"
+            grep "$PKG" "$file"
+          else
+            echo "::error::$PKG not found in devDependencies of $file"
+            exit 1
+          fi
+
+      - name: Update root yarn.lock
+        run: yarn install
+
+      - name: Build library
+        run: yarn build
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "chore: bump @seatsio/seatsio-types to ${{ github.event.inputs.version }}"
+          title: "Bump @seatsio/seatsio-types to ${{ github.event.inputs.version }}"
+          body: |
+            Updates `@seatsio/seatsio-types` to `${{ github.event.inputs.version }}` and refreshes `yarn.lock`.
+          branch: "bump/seatsio-types-${{ github.event.inputs.version }}"
+          base: master
+          add-paths: |
+            package.json
+            yarn.lock

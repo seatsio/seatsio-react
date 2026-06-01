@@ -24,7 +24,7 @@ jobs:
       - uses: fregante/setup-git-user@v2
       - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           registry-url: https://registry.npmjs.org/
       - run: yarn install
       - run: yarn zx ./release.mjs -v $VERSION_TO_BUMP

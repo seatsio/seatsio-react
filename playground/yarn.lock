@@ -1833,14 +1833,14 @@
   integrity sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==
 
 "@seatsio/seatsio-react@link:./..":
-  version "15.27.0"
+  version "15.29.0"
   dependencies:
-    "@seatsio/seatsio-types" "6.15.0"
+    "@seatsio/seatsio-types" "6.16.0"
 
-"@seatsio/seatsio-types@6.15.0":
-  version "6.15.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.15.0.tgz#250f6caca77222cc1401f3648878df4d97edd6ac"
-  integrity sha512-jLNikvDTTswSkkc7E9+uyZ1dq03UurkhBTM6SR4e1arwdfdsC8jcEJmnspTBmQBALWrMFhcxBf5aIzrK7+8kkw==
+"@seatsio/seatsio-types@6.16.0":
+  version "6.16.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.16.0.tgz#6233b7aa794e8cd890399b54894eb4ee162aea91"
+  integrity sha512-8xOgaJgBSYR17jRz9JXZo147hO2+XqWIMpwOy+7e7s/VF8QPQZPVX9MADGvjCD58mUmtG3KEKABNX3t6IaOBqg==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -6391,12 +6391,12 @@ language-tags@=1.0.5:
     language-subtag-registry "~0.3.2"
 
 launch-editor@^2.6.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/launch-editor/-/launch-editor-2.6.1.tgz#f259c9ef95cbc9425620bbbd14b468fcdb4ffe3c"
-  integrity sha512-eB/uXmFVpY4zezmGp5XtU21kwo7GBbKB+EQ+UZeWtGb9yAM5xt/Evk+lYH3eRNAtId+ej4u7TYPFZ07w4s7rRw==
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/launch-editor/-/launch-editor-2.14.1.tgz#f7e0da3f58aaea03fea01074d840b5f739ed7ddc"
+  integrity sha512-QWBrQsMpH7gPr965dsKD/3cKWiNoTjpATQf++Xq63N6sKRGMwlVXz41O1IZTMfZQgBctD/K5Zt06+/I6pP6+HA==
   dependencies:
-    picocolors "^1.0.0"
-    shell-quote "^1.8.1"
+    picocolors "^1.1.1"
+    shell-quote "^1.8.4"
 
 leven@^3.1.0:
   version "3.1.0"
@@ -8424,10 +8424,15 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-shell-quote@^1.7.3, shell-quote@^1.8.1:
+shell-quote@^1.7.3:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.8.1.tgz#6dbf4db75515ad5bac63b4f1894c3a154c766680"
   integrity sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==
+
+shell-quote@^1.8.4:
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.8.4.tgz#2edd9a4dcefc96649e2e2cb12f637b1f1d92a190"
+  integrity sha512-VsC6n6vz1ihYYyZZwX7YZSF5l5x36ca17OC+a69h94YqB7X6XLwf+5MOgynYir2SLFUbl8gIYvBo8K8RoNQ6bQ==
 
 side-channel@^1.0.4:
   version "1.0.4"

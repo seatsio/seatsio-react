@@ -10,7 +10,7 @@ export type EmbeddableProps<T> = {
 
 export default abstract class Embeddable<T extends CommonConfigOptions> extends React.Component<EmbeddableProps<T>> {
     private container: React.RefObject<HTMLDivElement>
-    private chart: SeatingChart
+    private chart!: SeatingChart
     private mountId: number = 0
 
     private static seatsioBundles: { [key: string]: Promise<Seatsio> } = {}
@@ -42,7 +42,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
     }
 
     getChartUrl () {
-        return this.props.chartJsUrl.replace('{region}', this.props.region)
+        return this.props.chartJsUrl!.replace('{region}', this.props.region)
     }
 
     async createAndRenderChart (currentMountId: number) {
@@ -79,6 +79,7 @@ export default abstract class Embeddable<T extends CommonConfigOptions> extends 
             Embeddable.seatsioBundles[chartUrl] = new Promise<Seatsio>((resolve, reject) => {
                 const script = document.head.appendChild(document.createElement('script'))
                 // Seatsio global is not replaced if already present, which would cause the wrong region bundle to resolve when changing region
+                // @ts-ignore
                 window.seatsio = undefined
                 script.onload = () => {
                     resolve(seatsio)

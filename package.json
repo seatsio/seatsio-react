@@ -1,13 +1,14 @@
 {
   "name": "@seatsio/seatsio-react",
   "version": "15.28.0",
-  "main": "build/index.js",
-  "module": "build/index.mjs",
-  "types": "build/index.d.ts",
+  "main": "build/index.mjs",
+  "types": "build/index.d.mts",
   "type": "module",
   "exports": {
-    "import": "./build/index.mjs",
-    "default": "./build/index.js"
+    "import": {
+      "types": "./build/index.d.mts",
+      "default": "./build/index.mjs"
+    }
   },
   "repository": {
     "type": "git",
@@ -43,7 +44,7 @@
     "semver": "7.8.1",
     "ts-jest": "29.4.11",
     "tsdown": "0.22.1",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "zx": "8.8.5"
   }
 }

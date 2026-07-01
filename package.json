@@ -26,7 +26,7 @@
     "build/"
   ],
   "dependencies": {
-    "@seatsio/seatsio-types": "6.16.0"
+    "@seatsio/seatsio-types": "6.17.0"
   },
   "peerDependencies": {
     "react": ">=18.0.0"
@@ -41,9 +41,9 @@
     "jest-environment-jsdom": "30.4.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "semver": "7.8.1",
+    "semver": "7.8.5",
     "ts-jest": "29.4.11",
-    "tsdown": "0.22.1",
+    "tsdown": "0.22.3",
     "typescript": "6.0.3",
     "zx": "8.8.5"
   }

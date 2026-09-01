@@ -28,7 +28,7 @@ jobs:
     needs: [build]
     if: success() && github.ref == 'refs/heads/master'
     steps:
-      - uses: seatsio/seatsio-github-actions/slack-notify-build-success@v1
+      - uses: seatsio/seatsio-github-actions/slack-notify-build-success@v2
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
 
@@ -37,6 +37,6 @@ jobs:
     needs: [build]
     if: failure() && github.ref == 'refs/heads/master'
     steps:
-      - uses: seatsio/seatsio-github-actions/slack-notify-build-failure@v1
+      - uses: seatsio/seatsio-github-actions/slack-notify-build-failure@v2
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}

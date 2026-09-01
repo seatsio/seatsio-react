@@ -44,7 +44,7 @@ jobs:
     needs: [ release ]
     if: failure()
     steps:
-      - uses: seatsio/seatsio-github-actions/slack-notify-clientlib-release-failure@v1
+      - uses: seatsio/seatsio-github-actions/slack-notify-clientlib-release-failure@v2
         with:
           webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
 

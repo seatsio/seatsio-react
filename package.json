@@ -1,6 +1,6 @@
 {
   "name": "@seatsio/seatsio-react",
-  "version": "15.34.0",
+  "version": "15.35.0",
   "main": "build/index.mjs",
   "types": "build/index.d.mts",
   "type": "module",

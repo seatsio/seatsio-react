@@ -9,64 +9,10 @@ on:
         type: string
 
 jobs:
-  bump-version:
-    runs-on: ubuntu-latest
+  bump:
+    uses: seatsio/seatsio-github-actions/.github/workflows/bump-seatsio-types.yml@v2
+    with:
+      version: ${{ inputs.version }}
     permissions:
       contents: write
       pull-requests: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Set up Node
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-
-      - name: Resolve version
-        env:
-          INPUT_VERSION: ${{ github.event.inputs.version }}
-        run: |
-          VERSION="$INPUT_VERSION"
-          if [ -z "$VERSION" ]; then
-            VERSION=$(npm view @seatsio/seatsio-types version)
-            echo "No version specified, using the latest version published on NPM: $VERSION"
-          fi
-          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.].+)?$ ]]; then
-            echo "::error::Invalid version '$VERSION'. Expected something like 6.16.0"
-            exit 1
-          fi
-          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
-
-      - name: Update package.json files
-        run: |
-          PKG="@seatsio/seatsio-types"
-          file="package.json"
-          if ! jq -e --arg pkg "$PKG" '.dependencies | has($pkg)' "$file" > /dev/null; then
-            echo "::error::$PKG not found in dependencies of $file"
-            exit 1
-          fi
-          jq --arg pkg "$PKG" --arg v "$VERSION" '.dependencies[$pkg] = $v' \
-            "$file" > "$file.tmp" && mv "$file.tmp" "$file"
-          echo "Updated $PKG to $VERSION in $file:"
-          grep "$PKG" "$file"
-
-      - name: Update root yarn.lock
-        run: yarn install
-
-      - name: Build library
-        run: yarn build
-
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v8
-        with:
-          commit-message: "chore: bump @seatsio/seatsio-types to ${{ env.VERSION }}"
-          title: "Bump @seatsio/seatsio-types to ${{ env.VERSION }}"
-          body: |
-            Updates `@seatsio/seatsio-types` to `${{ env.VERSION }}` and refreshes `yarn.lock`.
-          branch: "bump/seatsio-types-${{ env.VERSION }}"
-          base: master
-          add-paths: |
-            package.json
-            yarn.lock

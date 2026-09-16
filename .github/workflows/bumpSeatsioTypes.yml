@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'New version for @seatsio/seatsio-types'
-        required: true
+        description: 'New version for @seatsio/seatsio-types. Leave empty to use the latest version published on NPM.'
+        required: false
         type: string
 
 jobs:
@@ -19,38 +19,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Validate version format
-        run: |
-          if ! [[ "${{ github.event.inputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.].+)?$ ]]; then
-            echo "::error::Invalid version '${{ github.event.inputs.version }}'. Expected something like 6.16.0"
-            exit 1
-          fi
-
       - name: Set up Node
         uses: actions/setup-node@v7
         with:
           node-version: 24
 
-      - name: Update package.json files
+      - name: Resolve version
         env:
-          VERSION: ${{ github.event.inputs.version }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+        run: |
+          VERSION="$INPUT_VERSION"
+          if [ -z "$VERSION" ]; then
+            VERSION=$(npm view @seatsio/seatsio-types version)
+            echo "No version specified, using the latest version published on NPM: $VERSION"
+          fi
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.].+)?$ ]]; then
+            echo "::error::Invalid version '$VERSION'. Expected something like 6.16.0"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Update package.json files
         run: |
           PKG="@seatsio/seatsio-types"
           file="package.json"
-          if jq -e --arg pkg "$PKG" '.dependencies | has($pkg)' "$file" > /dev/null; then
-            jq --arg pkg "$PKG" --arg v "$VERSION" '.dependencies[$pkg] = $v' \
-              "$file" > "$file.tmp" && mv "$file.tmp" "$file"
-            echo "Updated $PKG to $VERSION in $file:"
-            grep "$PKG" "$file"
-          elif jq -e --arg pkg "$PKG" '.devDependencies | has($pkg)' "$file" > /dev/null; then
-            jq --arg pkg "$PKG" --arg v "$VERSION" '.devDependencies[$pkg] = $v' \
-              "$file" > "$file.tmp" && mv "$file.tmp" "$file"
-            echo "Updated $PKG to $VERSION in $file:"
-            grep "$PKG" "$file"
-          else
-            echo "::error::$PKG not found in dependencies/devDependencies of $file"
+          if ! jq -e --arg pkg "$PKG" '.dependencies | has($pkg)' "$file" > /dev/null; then
+            echo "::error::$PKG not found in dependencies of $file"
             exit 1
           fi
+          jq --arg pkg "$PKG" --arg v "$VERSION" '.dependencies[$pkg] = $v' \
+            "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+          echo "Updated $PKG to $VERSION in $file:"
+          grep "$PKG" "$file"
 
       - name: Update root yarn.lock
         run: yarn install
@@ -61,11 +61,11 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: "chore: bump @seatsio/seatsio-types to ${{ github.event.inputs.version }}"
-          title: "Bump @seatsio/seatsio-types to ${{ github.event.inputs.version }}"
+          commit-message: "chore: bump @seatsio/seatsio-types to ${{ env.VERSION }}"
+          title: "Bump @seatsio/seatsio-types to ${{ env.VERSION }}"
           body: |
-            Updates `@seatsio/seatsio-types` to `${{ github.event.inputs.version }}` and refreshes `yarn.lock`.
-          branch: "bump/seatsio-types-${{ github.event.inputs.version }}"
+            Updates `@seatsio/seatsio-types` to `${{ env.VERSION }}` and refreshes `yarn.lock`.
+          branch: "bump/seatsio-types-${{ env.VERSION }}"
           base: master
           add-paths: |
             package.json

@@ -1629,14 +1629,13 @@
   integrity sha512-TvZbIpeKqGQQ7X0zSCvPH9riMSFQFSggnfBjFZ1mEoILW+UuXCKwOoPcgjMwiUtRqFZ8jWhPJc4um14vC6I4ag==
 
 "@seatsio/seatsio-react@link:./..":
-  version "15.42.0"
-  dependencies:
-    "@seatsio/seatsio-types" "6.30.0"
+  version "0.0.0"
+  uid ""
 
-"@seatsio/seatsio-types@6.30.0":
-  version "6.30.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.30.0.tgz#b7d08437b94fe73670c7395270a6fbf27fff1906"
-  integrity sha512-euQYRuJA4Ng+FrHSGYEJgQuW7sslVLXtKHALsRj9Td7TBkzGT0OpaDd/bquOYkg0YmWbN1ASc5Rb6pxcObNDaA==
+"@seatsio/seatsio-types@6.31.0":
+  version "6.31.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.31.0.tgz#1a60a5de7edeb6575925b85b9f598172513f7061"
+  integrity sha512-7UjcSk1PqXwJ/coSF0o8brYe7jzt0As9D9FZWGtnmc7JYXIOs+Hauunhw8S1CulFOSmWYbKogVV5cDywdTwSWw==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.52"

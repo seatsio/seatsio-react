@@ -1006,10 +1006,10 @@
   resolved "https://registry.yarnpkg.com/@rolldown/pluginutils/-/pluginutils-1.0.1.tgz#e3fcee093fbb5ce765e1ad088ff4de2889f6f9be"
   integrity sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==
 
-"@seatsio/seatsio-types@6.34.0":
-  version "6.34.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.34.0.tgz#7dc3f5a2a107afbd3c39daf84c4685a2cf59ffc9"
-  integrity sha512-RQuSjB+609rYtNifezU5Uf4StHV1sXHTWuPAJfqfhLAeOrZ7FOCNg0tL4T8vSjIAl79r+mR6uxQSbbROO5YoPA==
+"@seatsio/seatsio-types@6.35.0":
+  version "6.35.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.35.0.tgz#adccd48711588d04b029541741538670d2b3060e"
+  integrity sha512-8rPz6DTXU6OgcMOJrwKGhG0Yea1wizzUJYkQdxIHcSMXf9Dgq+fD3yih/rihl8b/8DP3KwgwaMrrOA4G/MrmdA==
 
 "@sinclair/typebox@^0.34.0":
   version "0.34.37"
